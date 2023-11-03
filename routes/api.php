@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\APIController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,4 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/postLike', [APIController::class, 'postLike'])->name('api.postLike');
+Route::post('/checkin', [APIController::class, 'checkin'])->name('api.checkin');

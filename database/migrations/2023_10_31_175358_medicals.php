@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('medicals', function (Blueprint $table) {
             $table->id();
             $table->string('degree');
+            $table->string('tag')->nullable();
             $table->string('phone')->nullable();
             $table->tinyInteger('status');
             $table->unsignedBigInteger('user_id');
