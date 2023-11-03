@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('medicals', function (Blueprint $table) {
             $table->id();
             $table->string('degree');
-            $table->string('phone');
-            $table->string('status', 20)->unique();
+            $table->string('phone')->nullable();
+            $table->tinyInteger('status');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
@@ -38,7 +38,7 @@ return new class extends Migration
             $table->dateTime('end');
             $table->string('url');
             $table->string('more_information');
-            $table->string('status',20);
+            $table->tinyInteger('status');
             $table->unsignedBigInteger('created_by');
             $table->foreign('created_by')->references('id')->on('users');
             $table->timestamps();
@@ -50,16 +50,15 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('event_id')->references('id')->on('events');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('status',20);
+            $table->tinyInteger('status');
             $table->timestamps();
         });
 
         Schema::create('event_invited', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('event_id');
-            $table->unsignedBigInteger('user_id');
+            $table->longText('users');
             $table->foreign('event_id')->references('id')->on('events');
-            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
