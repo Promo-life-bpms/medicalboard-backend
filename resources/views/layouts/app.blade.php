@@ -17,13 +17,13 @@
 <body>
 
     <!-- Page Heading -->
-    @isset($header)
+  <!--   @isset($header)
         <header class="bg-white ">
             <div class="w-full">
                 {{ $header }}
             </div>
         </header>
-    @endisset
+    @endisset -->
 
     <!-- Page Content -->
     <main class="bg-stone-50 w-full h-screen">
