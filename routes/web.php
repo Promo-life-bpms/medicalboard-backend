@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('index');
+Route::get('/medical/presentation/{id}', [MedicalController::class, 'presentation'])->name('medicals.presentation');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
