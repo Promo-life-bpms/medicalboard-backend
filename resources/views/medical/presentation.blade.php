@@ -45,13 +45,13 @@
 </div>
 
 <div class="w-full flex flex-col items-center justify-center">
-    <a href="tu-enlace-a-medical-board" class="bg-black text-white py-2 rounded-lg text-2xl mt-4 text-center" style="width: 320px;">
+    <a href="#" class="bg-black text-white py-2 rounded-lg text-2xl mt-4 text-center" style="width: 320px;">
         MEDICAL BOARD
     </a>
-    <a href="tu-enlace-a-medical-board" class="bg-black text-white py-2 rounded-lg text-2xl mt-4 text-center" style="width: 320px;">
+    <a href="{{route('medical.info', ['id' =>  $user->id] )}}" class="bg-black text-white py-2 rounded-lg text-2xl mt-4 text-center" style="width: 320px;">
         MI INFORMACIÓN
     </a>
-    <a href="tu-enlace-a-medical-board" class="bg-black text-white py-2 rounded-lg text-2xl mt-4 text-center" style="width: 320px;">
+    <a href="{{ route('medical.events', ['id' => $user->id ])}}" class="bg-black text-white py-2 rounded-lg text-2xl mt-4 text-center" style="width: 320px;">
         EVENTOS 
     </a>
   

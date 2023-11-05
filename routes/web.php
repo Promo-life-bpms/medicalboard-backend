@@ -18,7 +18,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('index');
-Route::get('/medical/presentation/{id}', [MedicalController::class, 'presentation'])->name('medicals.presentation');
+Route::get('/medical/presentation/{id}', [MedicalController::class, 'presentation'])->name('medical.presentation');
+Route::get('/medical/presentation/info/{id}', [MedicalController::class, 'medicalInfo'])->name('medical.info');
+Route::get('/medical/presentation/events/{id}', [MedicalController::class, 'medicalEvents'])->name('medical.events');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

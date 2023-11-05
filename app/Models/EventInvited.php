@@ -11,5 +11,8 @@ class EventInvited extends Model
 
     public $table = 'event_invited';
 
-    
+    public function events()
+    {
+        return $this->belongsTo(Event::class, 'event_id');
+    }
 }
