@@ -36,16 +36,29 @@
                     <td>{{$loop->iteration}}</td>
                     <td>{{ $event->name }}</td>
                     <td><b>Inicio: </b> {{ $event->start }}  <br> <b>Fin: </b> {{ $event->end }}</td>
-                    <td> </td>
-                    <td>Finalizado</td>
-                    <td>Ver detalles</td>
+                    <td>{{ count(json_decode($event->invited->users)) }}</td>
+                    <td>
+
+                        @if($todayFormat >=  date('Y-m-d', strtotime($events[0]->start))   && $todayFormat <= date('Y-m-d', strtotime($events[0]->end)) )
+                            <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">En curso</span>
+                            
+                        @elseif($todayFormat >  date('Y-m-d', strtotime($events[0]->start))   && $todayFormat > date('Y-m-d', strtotime($events[0]->end)) )
+                            <span class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">Finalizado</span>
+                        @else
+                            <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">Próximo</span>
+                        @endif
+                    
+                    </td>
+                    <td>
+                    <a href="{{ route('events.show', ['id' => $event->id]) }}" class="bg-pink-600 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out">Ver detalles de evento</a>
+
+                        
+                    </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
         {{ $events->links() }}
-
-
-
     </div>
 @endsection
+

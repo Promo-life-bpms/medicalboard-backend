@@ -22,5 +22,14 @@ class Event extends Model
         'created_by',
     ];
 
+    public function invited()
+    {
+        return $this->hasOne(EventInvited::class, 'event_id');
+    }
+
+    public function logs()
+    {
+        return $this->hasMany(EventLog::class, 'event_id');
+    }
 
 }

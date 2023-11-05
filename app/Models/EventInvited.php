@@ -10,4 +10,6 @@ class EventInvited extends Model
     use HasFactory;
 
     public $table = 'event_invited';
+
+    
 }

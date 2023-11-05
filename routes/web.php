@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/events', [EventController::class, 'index'])->name('events.index');
+    Route::get('/events/show/{id}', [EventController::class, 'show'])->name('events.show');
 
 
 
