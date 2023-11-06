@@ -37,7 +37,7 @@ class MedicalController extends Controller
 
     public function medicalEventDetail($id) {
         $event = Event::findOrFail($id); 
-
-        return view(' medical.medical-event-info', compact('event'));
+        $today = Date::now()->format('Y-m-d');
+        return view(' medical.medical-event-info', compact('event', 'today'));
     }
 }

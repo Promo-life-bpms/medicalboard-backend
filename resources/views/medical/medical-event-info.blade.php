@@ -5,31 +5,50 @@
 
 @section('content')
 
-<div class="w-full">
+<a href="{{ url()->previous() }}" class="absolute z-10 m-20 " >
+    <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+</a> 
+
+
+<div class="w-full z-2">
     @if($event->img == '' ||  $event->img == null)
         <img src="{{ asset('img/eventos.jpg') }}" class="w-full h-48 object-cover">
     @else
         <img src="{{ asset($event->img) }}" class="w-full h-48 object-cover">
     @endif
-
 </div>
 
 
-<div class="relative p-20">
-    <p class="text-3xl font-bold text-center">{{ $event->name }}</p>
-    <p class="pt-4 text-xl">{{ $event->more_information }}</p>
+
+<div class="relative px-20 pt-10">
+    <p class="text-3xl font-bold text-center pb-5">{{ $event->name }}</p>
+    <p class="pt-4 text-xl">{{ $event->description }}</p>
 </div>
  
 <div class="flex flex-wrap ">
     <div class="w-full md:w-1/2 px-20"> 
         <p class="text-xl font-bold mb-8">Detalles del evento</p>
         <div class="border border-stone-200 p-5 rounded-lg ">
-           <p>Fecha:</p>
-           <p>Hora de inicio:</p>
-           <p>Hora de termino:</p>
-           <p>Tipo:</p>
-           <p>Sede:</p>
-           <p>Status:</p>
+            @php
+                $eventStartDate = \Carbon\Carbon::parse($event->start);
+                $eventEndDate = \Carbon\Carbon::parse($event->end);
+            @endphp
+           <p>Fecha:  {{ date('Y-m-d', strtotime($event->start)) }}</p>
+           <p>Hora de inicio: {{ date('H:i', strtotime($event->start)) }} </p>
+           <p>Hora de termino: {{ date('H:i', strtotime($event->end)) }}</p>
+           <p>Tipo: {{ $event->type }}</p>
+           <p>Sede: {{ $event->site }}</p>
+           <p>Status: 
+            @if($eventStartDate->format('Y-m-d') < $today && $eventEndDate->format('Y-m-d') < $today )
+                <span class="mt-5 inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">Finalizado</span>
+            @elseif($eventStartDate->format('Y-m-d') <= $today && $eventEndDate->format('Y-m-d') <= $today )
+                <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">En curso</span>
+            @else 
+                <span class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">Próximo</span>
+            @endif
+        </p>
         </div>
 
         <p class="text-xl font-bold mb-8 mt-10">Recursos del evento</p>
