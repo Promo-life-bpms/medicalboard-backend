@@ -38,21 +38,24 @@ function openTab(evt, tabName) {
             </a>
             <h1 class="text-3xl font-bold">{{ $event->name}}</h1>
         </div>
-
         
 
         <div class="flex space-x-4 p-4">
-            <div class="bg-white rounded-lg shadow-md p-4 h-28">
+            <div class="bg-white rounded-lg shadow-md p-4 h-28 w-1/6">
                 <h2 class="text-lg font-semibold">Total invitados</h2>
-                <p>Contenido de la tarjeta 1</p>
+                <p class="text-3xl">{{count(json_decode($event->invited->users))}}</p>
             </div>
-            <div class="bg-white rounded-lg shadow-md p-4">
+            <div class="bg-white rounded-lg shadow-md p-4 w-1/6">
                 <h2 class="text-lg font-semibold">Asistieron</h2>
-                <p>Contenido de la tarjeta 2</p>
+                <p class="text-3xl">{{ count($user_checkin)}}</p>
             </div>
-            <div class="bg-white rounded-lg shadow-md p-4">
-                <h2 class="text-lg font-semibold">Externos</h2>
-                <p>Contenido de la tarjeta 3</p>
+            <div class="bg-white rounded-lg shadow-md p-4 w-1/6">
+                <h2 class="text-lg font-semibold">No Asistieron</h2>
+                <p class="text-3xl">{{ count($user_no_checkin)}}</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-4 w-1/6">
+                <h2 class="text-lg font-semibold">No invitados</h2>
+                <p class="text-3xl">{{ count($users_no_invited) }}</p>
             </div>
         </div>
 
@@ -60,24 +63,25 @@ function openTab(evt, tabName) {
 
 
         <table class="table-auto w-full" >
+            <p class="pt-4 pb-4 text-xl font-bold">Lista de asistentes</p>
             <thead class="bg-stone-100 h-12 border">
                 <tr >
                     <th style="width: 10%;">#</th>
                     <th style="width: 50%;">Nombre</th>
-                    <th style="width: 30%;">Hora de entrada</th>
+                    <th style="width: 20%;">Hora de entrada</th>
                     <th style="width: 20%;">Status</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($logs as $log)
-                <tr>
-                    <th>{{$loop->iteration}}</th>
+                <tr class="border">
+                    <th class="p-2">{{$loop->iteration}}</th>
                     <th>{{ $log->user->medical->degree . ' ' . $log->user->name . ' ' . $log->user->lastname }}</th>
                     <th>{{ $log->created_at }}</th>
                     <th>@if($log->status == 1 )
                             <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Invitado</span>
                         @else
-                        <span class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">No invitado</span>
+                            <span class="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20">No invitado</span>
                         @endif
                         
                     </th>
@@ -91,24 +95,35 @@ function openTab(evt, tabName) {
             {{ $logs->links() }}
         </div>
 
-        
-        <div class="tab">
-    <button class="tablinks" onclick="openTab(event, 'tab1')">Pestaña 1</button>
-    <button class="tablinks" onclick="openTab(event, 'tab2')">Pestaña 2</button>
-</div>
-
-<div id="tab1" class="tabcontent">
-   1
-</div>
-
-<div id="tab2" class="tabcontent">
-    2
-</div>
 
 
+        <p class="pt-8 pb-4 text-xl font-bold">Lista de invitados que no asistieron</p>
 
+        <table class="table-auto w-full" >
+            <thead class="bg-stone-100 h-12 border">
+                <tr >
+                    <th style="width: 10%;">#</th>
+                    <th style="width: 70%;">Nombre</th>
+                   
+                    <th style="width: 20%;">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($users_no_invited as $log)
+                <tr class="border">
+                    <th class="p-2">{{$loop->iteration}}</th>
+                    <th>{{ $log->user->medical->degree . ' ' . $log->user->name . ' ' . $log->user->lastname }}</th>
+                    <th>
+                        <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">No asistió</span>
+                    </th>
+                </tr>
+                @endforeach
+           
+            </tbody>
+        </table>
     </div>
 
+    <div class="mt-40"></div>
    
 @endsection
 
