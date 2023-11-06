@@ -4,6 +4,19 @@
 
 
 @section('content')
+        @if (session('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+            @elseif (session('message1'))
+                <div class="alert alert-danger">
+                    {{ session('message1') }}
+                </div>
+            @elseif (session('message2'))
+                <div class="alert alert-warning">
+                    {{ session('message2') }}
+                </div>
+        @endif
 
     @include('components.nav') 
     <div class="w-full p-12 ">
@@ -17,12 +30,10 @@
             <div class="w-full"> 
                 <div class="flex justify-between">
                     <h1 class="text-3xl font-bold"> Eventos disponibles</h1>
-
-                        <!-- Modal toggle -->
                         <button data-modal-target="static-modal" data-modal-toggle="static-modal" class="block text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-                        Crear evento
+                            Crear evento
                         </button>
-                        <!-- Main modal -->
+
                         <div id="static-modal"  tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                             <div class="relative w-full max-w-2xl max-h-full">
                                 <!-- Modal content -->
@@ -39,32 +50,186 @@
                                             <span class="sr-only">Close modal</span>
                                         </button>
                                     </div>
-                                    <!-- Modal body -->
+
+                                    <!-- Dentro del Modal body -->
                                     <div class="p-6 space-y-6">
-                                        <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                            With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
-                                        </p>
-                                        <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                            The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
-                                        </p>
-                                    </div>
-                                    <!-- Modal footer -->
-                                    <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                        <button data-modal-hide="static-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">I accept</button>
-                                        <button data-modal-hide="static-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Decline</button>
-                                    </div>
+                                        <form method="POST" action="{{ route('events.create') }}" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="created_by">Usuario: </label> <p>{{ $user->id }}</p>
+                                                    <label for="name" class="required">Título:</label>
+                                                    <input type="text" name="name" class="form-control" placeholder="Ingresa un título">
+                                                    @error('name')
+                                                        <small>
+                                                            <font color="red"> *Este campo es requerido* </font>
+                                                        </small>
+                                                        <br>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="description" class="required">Descripción:</label>
+                                                    <input type="text" name="description" class="form-control" placeholder="Ingresa la descripción">
+                                                    @error('description')
+                                                        <small>
+                                                            <font color="red"> *Este campo es requerido* </font>
+                                                        </small>
+                                                        <br>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="site" class="required">Sitio:</label>
+                                                    <input type="text" name="site" class="form-control" placeholder="Ingresa el sitio">
+                                                    @error('site')
+                                                        <small>
+                                                            <font color="red"> *Este campo es requerido* </font>
+                                                        </small>
+                                                        <br>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="location" class="required">Locación:</label>
+                                                    <input type="text" name="location" class="form-control" placeholder="Ingresa la locación">
+                                                    @error('location')
+                                                        <small>
+                                                            <font color="red"> *Este campo es requerido* </font>
+                                                        </small>
+                                                        <br>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="type" class="required">Tipo:</label>
+                                                    <input type="text" name="type" class="form-control" placeholder="Tipo">
+                                                    @error('type')
+                                                        <small>
+                                                            <font color="red"> *Este campo es requerido* </font>
+                                                        </small>
+                                                        <br>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="start" class="required">Inicio:</label>
+                                                    <input type="datetime-local" name="start" class="form-control" placeholder="Fecha">
+                                                    @error('start')
+                                                        <small>
+                                                            <font color="red"> *Este campo es requerido* </font>
+                                                        </small>
+                                                        <br>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="end" class="required">Fin</label>
+                                                    <input type="datetime-local" name="end" class="form-control" placeholder="Fecha">
+                                                    @error('end')
+                                                        <small>
+                                                            <font color="red"> *Este campo es requerido* </font>
+                                                        </small>
+                                                        <br>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="url" class="required">URL:</label>
+                                                    <input type="text" name="url" class="form-control" placeholder="Ingresa la URL">
+                                                    @error('url')
+                                                        <small>
+                                                            <font color="red"> *Este campo es requerido* </font>
+                                                        </small>
+                                                        <br>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                            
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="more_information" class="required">Más información:</label>
+                                                    <input type="text" name="more_information" class="form-control" placeholder="Más información">
+                                                    @error('more_information')
+                                                        <small>
+                                                            <font color="red"> *Este campo es requerido* </font>
+                                                        </small>
+                                                        <br>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="img" class="required">Imagen:</label>
+                                                    <input type="file" name="img" accept="image/*" class="form-control" placeholder="Seleccionar imagen">
+                                                    @error('img')
+                                                        <small>
+                                                            <font color="red"> *Error al cargar la imagen* </font>
+                                                        </small>
+                                                        <br>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <button type="submit" class="btn btn-primary">
+                                                    Crear Evento
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                
+                                <!-- Modal footer -->
+
+                                <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+                                    <button data-modal-hide="static-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">I accept</button>
+                                    <button data-modal-hide="static-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Decline</button>
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </div>
-            </div>
-            
         </div>
-       
-        <div class="pt-12"></div>
-
+    </div>
         
-        
+    <div class="pt-12"></div>
         <table class="table-auto w-full">
             <thead class="bg-stone-100 h-12 border">
                 <tr >
@@ -83,7 +248,7 @@
                     <td>{{$loop->iteration}}</td>
                     <td>{{ $event->name }}</td>
                     <td><b>Inicio: </b> {{ $event->start }}  <br> <b>Fin: </b> {{ $event->end }}</td>
-                    <td>{{ count(json_decode($event->invited->users)) }}</td>
+                    {{-- <td>{{ count(json_decode($event->invited->users)) }}</td> --}}
                     <td>
 
                         @if($todayFormat >=  date('Y-m-d', strtotime($events[0]->start))   && $todayFormat <= date('Y-m-d', strtotime($events[0]->end)) )
@@ -101,7 +266,33 @@
 
                         
                     </td>
+                    <td>
+    <!-- Botón para abrir el modal -->
+    <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out" data-bs-toggle="modal" data-bs-target="#modalEditar{{$event->id}}">
+        Editar
+    </button>
+
+    <!-- Modal de edición -->
+    <div class="modal" id="modalEditar{{$event->id}}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Encabezado del modal -->
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar Evento</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!-- Cuerpo del modal: Aquí puedes colocar el formulario para editar el evento -->
+                <div class="modal-body">
+                    <!-- Coloca aquí los campos para editar el evento -->
+                    <!-- Puedes usar un formulario similar al de creación de eventos -->
+                    <div>{{$event->id}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</td>
                 </tr>
+                
             @endforeach
             </tbody>
         </table>

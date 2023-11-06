@@ -36,8 +36,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/events', [EventController::class, 'index'])->name('events.index');
     Route::get('/events/show/{id}', [EventController::class, 'show'])->name('events.show');
-
-
+    Route::post('/event/create',[EventController::class,'create'])->name('events.create');
+    Route::post('/event/edit',[EventController::class,'edit'])->name('events.edit');
 
     Route::get('/medicals', [MedicalController::class, 'index'])->name('medicals.index');
 
