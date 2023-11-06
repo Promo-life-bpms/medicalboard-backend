@@ -21,6 +21,7 @@ Route::get('/', [HomeController::class, 'index'])->middleware(['auth', 'verified
 Route::get('/medical/presentation/{id}', [MedicalController::class, 'presentation'])->name('medical.presentation');
 Route::get('/medical/presentation/info/{id}', [MedicalController::class, 'medicalInfo'])->name('medical.info');
 Route::get('/medical/presentation/events/{id}', [MedicalController::class, 'medicalEvents'])->name('medical.events');
+Route::get('/medical/presentation/events/detail/{id}', [MedicalController::class, 'medicalEventDetail'])->name('medical.event.detail');
 
 
 Route::get('/dashboard', function () {

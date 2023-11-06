@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\EventInvited;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -26,11 +27,17 @@ class MedicalController extends Controller
     }
 
     public function medicalEvents($id) {
-        
+
         $user = User::where('id', $id)->get()->first();
         $events_invited = EventInvited::whereRaw("JSON_CONTAINS(users, ?)", [$user->id])->get();
         $today = Date::now()->format('Y-m-d'); 
 
         return view('medical.medical-events', compact('user','events_invited', 'today'));
+    }
+
+    public function medicalEventDetail($id) {
+        $event = Event::findOrFail($id); 
+
+        return view(' medical.medical-event-info', compact('event'));
     }
 }

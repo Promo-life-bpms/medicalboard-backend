@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Home')
+@section('title', 'Eventos')
 
 
 @section('content')
@@ -32,18 +32,21 @@
                         $eventEndDate = \Carbon\Carbon::parse($invited->events->end);
                     @endphp
                     @if ($eventStartDate->format('Y-m-d') < $today && $eventEndDate->format('Y-m-d') < $today )
-                    <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+                    <a href="{{ route('medical.event.detail', ['id' => $invited->events->id ])}}">
 
-                        @if($invited->events->img == '' ||  $invited->events->img == null)
-                            <img src="{{ asset('img/eventos.jpg') }}" alt="{{ $invited->events->name }}" class="w-full h-48 object-cover">
-                        @else
-                            <img src="{{ $invited->events->img }}" alt="{{ $invited->events->name }}" class="w-full h-48 object-cover">
-                        @endif
-                        <div class="p-4">
-                            <h2 class="text-xl font-semibold">{{ $invited->events->name }}</h2>
-                            <span class="mt-5 inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">Finalizado</span>
+                        <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+                            @if($invited->events->img == '' ||  $invited->events->img == null)
+                                <img src="{{ asset('img/eventos.jpg') }}" alt="{{ $invited->events->name }}" class="w-full h-48 object-cover">
+                            @else
+                                <img src="{{ $invited->events->img }}" alt="{{ $invited->events->name }}" class="w-full h-48 object-cover">
+                            @endif
+                            <div class="p-4">
+                                <h2 class="text-xl font-semibold">{{ $invited->events->name }}</h2>
+                                <span class="mt-5 inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">Finalizado</span>
+                            </div>
                         </div>
-                    </div>
+                    </a>
+                    
                     
                     @endif
 
@@ -63,17 +66,20 @@
                     $eventEndDate = \Carbon\Carbon::parse($invited->events->end);
                 @endphp
                 @if ($eventStartDate->format('Y-m-d') <= $today && $eventEndDate->format('Y-m-d') <= $today )
-                <div class="bg-white rounded-lg overflow-hidden shadow-lg">
-                    @if($invited->events->img == '' ||  $invited->events->img == null)
-                        <img src="{{ asset('img/eventos.jpg') }}" alt="{{ $invited->events->name }}" class="w-full h-48 object-cover">
-                    @else
-                        <img src="{{ $invited->events->img }}" alt="{{ $invited->events->name }}" class="w-full h-48 object-cover">
-                    @endif
-                    <div class="p-4">
-                        <h2 class="text-xl font-semibold">{{ $invited->events->name }}</h2>
-                        <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">En curso</span>
+                <a href="{{ route('medical.event.detail', ['id' => $invited->events->id ])}}">
+
+                    <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+                        @if($invited->events->img == '' ||  $invited->events->img == null)
+                            <img src="{{ asset('img/eventos.jpg') }}" alt="{{ $invited->events->name }}" class="w-full h-48 object-cover">
+                        @else
+                            <img src="{{ $invited->events->img }}" alt="{{ $invited->events->name }}" class="w-full h-48 object-cover">
+                        @endif
+                        <div class="p-4">
+                            <h2 class="text-xl font-semibold">{{ $invited->events->name }}</h2>
+                            <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">En curso</span>
+                        </div>
                     </div>
-                </div>
+                </a>
 
                 @endif
 
@@ -92,30 +98,26 @@
                     $eventEndDate = \Carbon\Carbon::parse($invited->events->end);
                 @endphp
                 @if ($eventStartDate->format('Y-m-d') > $today && $eventEndDate->format('Y-m-d') > $today )
-                <div class="bg-white rounded-lg overflow-hidden shadow-lg">
-                    @if($invited->events->img == '' ||  $invited->events->img == null)
-                        <img src="{{ asset('img/eventos.jpg') }}" alt="{{ $invited->events->name }}" class="w-full h-48 object-cover">
-                    @else
-                        <img src="{{ $invited->events->img }}" alt="{{ $invited->events->name }}" class="w-full h-48 object-cover">
-                    @endif
-                    <div class="p-4">
-                        <h2 class="text-xl font-semibold">{{ $invited->events->name }}</h2>
-                        <span class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">Próximo</span>
+                <a href="{{ route('medical.event.detail', ['id' => $invited->events->id ])}}">
+                    <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+                        @if($invited->events->img == '' ||  $invited->events->img == null)
+                            <img src="{{ asset('img/eventos.jpg') }}" alt="{{ $invited->events->name }}" class="w-full h-48 object-cover">
+                        @else
+                            <img src="{{ $invited->events->img }}" alt="{{ $invited->events->name }}" class="w-full h-48 object-cover">
+                        @endif
+                        <div class="p-4">
+                            <h2 class="text-xl font-semibold">{{ $invited->events->name }}</h2>
+                            <span class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">Próximo</span>
+                        </div>
                     </div>
-                </div>
-
+                </a>
                 @endif
 
 
                 @endforeach
             </div>
         </div>
-
-
-        
-
-
-       
+     
     @else
         <p>No tienes eventos disponibles</p>
     @endif
