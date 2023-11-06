@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/medicals', [MedicalController::class, 'index'])->name('medicals.index');
+    Route::post('/medicals/store', [MedicalController::class, 'store'])->name('medicals.store');
 
 
 });

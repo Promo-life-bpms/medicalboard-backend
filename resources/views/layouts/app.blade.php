@@ -27,7 +27,7 @@
     @endisset -->
 
     <!-- Page Content -->
-    <main class="bg-stone-50 w-full h-screen">
+    <main class="bg-stone-50 w-full ">
         @yield('content')
     </main>
  
