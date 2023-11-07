@@ -50,45 +50,61 @@
                                         <div class="flex">
                                             <div class="flex-1 mx-2">
                                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
-                                                    Nombre (s)
+                                                    Nombre (s) <span class="text-red-500">*</span>
                                                 </label>
                                                 <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Ingrese nombre(s)" name="name">
+                                                @error('name')
+                                                    <p class="text-red-500 text-xs italic">Este campo es requerido</p>
+                                                @enderror
+
                                             </div>
                                             <div class="flex-1 mx-2">
                                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="lastname">
-                                                    Apellidos
+                                                    Apellidos <span class="text-red-500">*</span>
                                                 </label>
                                                 <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="lastname" type="text" placeholder="Ingrese apellidos" name="lastname">
+                                                @error('lastname')
+                                                    <p class="text-red-500 text-xs italic">Este campo es requerido</p>
+                                                @enderror
                                             </div>
                                         </div>
 
                                         <div class="flex">
                                             <div class="flex-1 mx-2">
                                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
-                                                    Email
+                                                    Email <span class="text-red-500">*</span>
                                                 </label>
                                                 <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Ingrese email" name="email">
+                                                @error('email')
+                                                    <p class="text-red-500 text-xs italic">Este campo es requerido y debe ser email</p>
+                                                @enderror
                                             </div>
                                             <div class="flex-1 mx-2">
                                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="degree">
-                                                    Grado
+                                                    Grado <span class="text-red-500">*</span>
                                                 </label>
                                                 <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="degree" type="text" placeholder="Dr/Dra" name="degree">
+                                                @error('degree')
+                                                    <p class="text-red-500 text-xs italic">Este campo es requerido</p>
+                                                @enderror
                                             </div>
                                         </div>
 
                                         <div class="flex">
                                             <div class="flex-1 mx-2">
                                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="idapi">
-                                                    IDAPI
+                                                    IDAPI (opcional)
                                                 </label>
                                                 <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="idapi" type="text" placeholder="Ingrese IDAPI" name="idapi">
                                             </div>
                                             <div class="flex-1 mx-2">
                                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="category">
-                                                    Categoría
+                                                    Categoría (opcional)
                                                 </label>
                                                 <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Ingrese categoría (MB2A,MB2B,MB1I)" name="category">
+                                                @error('category')
+                                                    <p class="text-red-500 text-xs italic">Este campo es requerido</p>
+                                                @enderror
                                             </div>
                                         </div>
 
@@ -113,7 +129,6 @@
                                     <!-- Modal footer -->
                                     <div class="flex items-center p-2 pt-4 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
                                         <button data-modal-hide="static-modal" type="submit" class="bg-pink-600 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out">Guardar</button>
-                                        <button data-modal-hide="static-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cancelar</button>
                                     </div>
 
                                     </form>
@@ -126,12 +141,15 @@
         </div>
 
     </div>
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-    <div class="w-full  px-12 pt-8">
+   
+    <div class="w-full px-12 pt-8">
+        
+        @if (session('success'))
+            <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4 role="alert">
+                <p class="font-bold">Éxito</p>
+                <p>Usuario agregado exitosamente</p>
+            </div>
+        @endif
         <table class="table-auto w-full">
             <thead class="bg-stone-100 h-12 border">
                 <tr >
