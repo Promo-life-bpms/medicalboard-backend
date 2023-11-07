@@ -8,6 +8,7 @@ use App\Models\Medical;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Stmt\Return_;
 
 class MedicalController extends Controller
@@ -47,6 +48,35 @@ class MedicalController extends Controller
         return redirect()->route('medicals.index')
         ->with('success', 'Usuario agregado satisfactoriamente');
 
+    }
+
+    public function update(Request $request) {
+
+        $request->validate([
+            'name' => 'required',
+            'lastname' => 'required',
+            'email' => 'required',
+            'degree' => 'required',
+        ]);
+
+        DB::table('users')->where('id',$request->user_id)->update([
+            'name' => $request->name,
+            'lastname' => $request->lastname,
+            'email' => $request->email,
+        ]);
+
+
+        DB::table('medicals')->where('user_id',$request->user_id)->update([
+            'degree' => $request->degree,
+            'idapi' => $request->idapi,
+            'category' => $request->category,
+            'tag' => $request->tag,
+            'phone' => $request->phone,
+            'tag' => $request->tag,
+        ]);
+
+        return redirect()->route('medicals.index')
+        ->with('update', 'Usuario agregado satisfactoriamente');
     }
 
     public function presentation($id)  {
