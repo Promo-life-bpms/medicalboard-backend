@@ -11,6 +11,11 @@ class EventInvited extends Model
 
     public $table = 'event_invited';
 
+    protected $fillable = [
+        'users',
+        'event_id'
+    ];
+
     public function events()
     {
         return $this->belongsTo(Event::class, 'event_id');

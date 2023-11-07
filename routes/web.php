@@ -38,8 +38,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/events/show/{id}', [EventController::class, 'show'])->name('events.show');
     Route::post('/event/create',[EventController::class,'create'])->name('events.create');
     Route::post('/event/edit',[EventController::class,'edit'])->name('events.edit');
-
+    Route::post('event/delete',[EventController::class, 'delete'])->name('events.delete');
+    Route::post('user/event/add',[EventController::class, 'AddUserofEvent'])->name('user.event');
+    
     Route::get('/medicals', [MedicalController::class, 'index'])->name('medicals.index');
+    
 
 
 });
