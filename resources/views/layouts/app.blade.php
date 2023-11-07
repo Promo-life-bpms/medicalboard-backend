@@ -30,6 +30,6 @@
     <main class="bg-stone-50 w-full ">
         @yield('content')
     </main>
- 
+    @yield('scripts')
 </body>
 </html>

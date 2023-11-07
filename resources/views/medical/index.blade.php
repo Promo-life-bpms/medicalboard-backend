@@ -148,16 +148,24 @@
         @if (session('success'))
             <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4" role="alert">
                 <p class="font-bold">Éxito</p>
-                <p>Usuario agregado exitosamente</p>
+                <p>Médico agregado exitosamente</p>
             </div>
         @endif
 
         @if (session('update'))
             <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4" role="alert">
                 <p class="font-bold">Éxito</p>
-                <p>Información de usuario ha sido actualizada exitosamente</p>
+                <p>Información de médico ha sido actualizada exitosamente</p>
             </div>
         @endif
+
+        @if (session('delete'))
+            <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4 mb-4" role="alert">
+                <p class="font-bold">Éxito</p>
+                <p>Médico eliminado exitosamente</p>
+            </div>
+        @endif
+
         <table class="table-auto w-full">
             <thead class="bg-stone-100 h-12 border">
                 <tr >
@@ -165,9 +173,9 @@
                     <th style="width: 10%;">IDAPI</th>
                     <th style="width: 10%;">Categoría</th>
                     <th style="width: 10%;">Título</th>
-                    <th style="width: 20%;">Nombre</th>
-                    <th style="width: 20%;">Apellidos</th>
-                    <th style="width: 25%;">Opciones</th>
+                    <th style="width: 25%;">Nombre</th>
+                    <th style="width: 30%;">Apellidos</th>
+                    <th style="width: 10%;">Opciones</th>
                     
                 </tr>
             </thead>
@@ -182,11 +190,18 @@
                         <td>{{ $medical->user->lastname }} </td>
                         <td> 
 
+                            <div class="flex">
+                                <button data-modal-target="modal{{$medical->id}}" data-modal-toggle="modal{{$medical->id}}" class="block text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 h-10" type="button">
+                                Editar
+                                </button>
 
+                                <form method="POST" action="{{ route('medicals.delete', ['user_id' => $medical->user->id]) }}" class="form-delete">
+                                    @csrf
+                                    <button type="submit" class=" delete-button bg-red-600 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out">Eliminar</button>
+                                </form>
+                            </div>
                             <!-- Modal toggle -->
-                            <button data-modal-target="modal{{$medical->id}}" data-modal-toggle="modal{{$medical->id}}" class="block text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 h-10" type="button">
-                            Editar
-                            </button>
+                            
                             <!-- Main modal -->
                             <div id="modal{{$medical->id}}"  tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                                 <div class="relative w-full max-w-2xl max-h-full">
@@ -310,4 +325,31 @@
             
     </div> 
 
+@endsection
+
+@section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    console.log('aaaaaaaaaaaa')
+    $('.form-delete').submit(function(e) {
+        e.preventDefault();
+
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¡El registro se eliminará permanentemente!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        });
+    });
+</script>
 @endsection

@@ -14,7 +14,7 @@ use PhpParser\Node\Stmt\Return_;
 class MedicalController extends Controller
 {
     public function index() {
-        $medicals = Medical::paginate(15);
+        $medicals = Medical::where('status', 1)->paginate(15);
         return view('medical.index', compact('medicals'));
     }
 
@@ -77,6 +77,15 @@ class MedicalController extends Controller
 
         return redirect()->route('medicals.index')
         ->with('update', 'Usuario agregado satisfactoriamente');
+    }
+
+    public function delete(Request $request) {
+        DB::table('medicals')->where('user_id',$request->user_id)->update([
+            'status' => 0,
+        ]);
+
+        return redirect()->route('medicals.index')
+        ->with('delete', 'Usuario eliminado satisfactoriamente');
     }
 
     public function presentation($id)  {
