@@ -91,7 +91,7 @@
                                                 <div>
                                                     <label for="created_by" style="display: none;">Usuario:</label><p style="display: none;">{{ $user->id }}</p>
                                                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Titulo</label>
-                                                    <input type="text" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                    <input type="text" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa un título">
                                                     @error('name')
                                                         <small>
                                                             <font color="red"> *Este campo es requerido* </font>
@@ -113,7 +113,7 @@
 
                                                 <div>
                                                     <label for="site" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sitio</label>
-                                                    <input type="text" name="site" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                    <input type="text" name="site" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa un sitio">
                                                     @error('site')
                                                         <small>
                                                             <font color="red"> *Este campo es requerido* </font>
@@ -124,7 +124,7 @@
 
                                                 <div>
                                                     <label for="location" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Locación</label>
-                                                    <input type="text" name="location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                    <input type="text" name="location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa una locación">
                                                     @error('location')
                                                         <small>
                                                             <font color="red"> *Este campo es requerido* </font>
@@ -135,7 +135,7 @@
 
                                                 <div>
                                                     <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo</label>
-                                                    <input type="text" name="type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                    <input type="text" name="type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa el tipo">
                                                     @error('type')
                                                         <small>
                                                             <font color="red"> *Este campo es requerido* </font>
@@ -147,7 +147,7 @@
                                                 <div style="display: flex; gap: 20px;">
                                                     <div style="flex: 1;">
                                                         <label for="start" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Inicio</label>
-                                                        <input type="datetime-local" name="start" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                        <input type="datetime-local" name="start" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa el inicio de la reunión">
                                                         @error('start')
                                                             <small>
                                                                 <font color="red"> *Este campo es requerido* </font>
@@ -158,7 +158,7 @@
 
                                                     <div style="flex: 1;">
                                                         <label for="end" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fin</label>
-                                                        <input type="datetime-local" name="end" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                        <input type="datetime-local" name="end" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa el fin de la reunión">
                                                         @error('end')
                                                             <small>
                                                                 <font color="red"> *Este campo es requerido* </font>
@@ -171,7 +171,7 @@
 
                                                 <div>
                                                     <label for="url" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">URL</label>
-                                                    <input type="text" name="url" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                    <input type="text" name="url" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa la URL">
                                                     @error('url')
                                                         <small>
                                                             <font color="red"> *Este campo es requerido* </font>
@@ -182,7 +182,7 @@
 
                                                 <div>
                                                     <label for="more_information" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Más información</label>
-                                                    <input type="text" name="more_information" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                    <input type="text" name="more_information" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa más información">
                                                     @error('more_information')
                                                         <small>
                                                             <font color="red"> *Este campo es requerido* </font>
@@ -231,8 +231,8 @@
                                                     </ul>
                                                 </div>
 
-                                                <div>
-                                                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                <div class="text-right">
+                                                    <button type="submit" class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                                         Crear evento
                                                     </button>
                                                 </div>
@@ -262,29 +262,50 @@
                     <tbody>
                         @foreach($events as $event)
                             <tr class="border h-14">
-                                <td>{{$loop->iteration}}</td>
-                                <td>{{ $event->name }}</td>
-                                <td><b>Inicio: </b> {{ $event->start }}  <br> <b>Fin: </b> {{ $event->end }}</td>
-                                {{-- <td>{{ count(json_decode($event->invited->users)) }}</td> --}}
                                 <td>
-                                    @if($todayFormat >=  date('Y-m-d', strtotime($events[0]->start))   && $todayFormat <= date('Y-m-d', strtotime($events[0]->end)) )
-                                        <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">En curso</span>
-                                    @elseif($todayFormat >  date('Y-m-d', strtotime($events[0]->start))   && $todayFormat > date('Y-m-d', strtotime($events[0]->end)) )
-                                        <span class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">Finalizado</span>
-                                    @else
-                                        <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">Próximo</span>
-                                    @endif
+                                    <div class="text-center">
+                                        {{$loop->iteration}}
+                                    </div>
                                 </td>
                                 <td>
-                                    <a href="{{ route('events.show', ['id' => $event->id]) }}" class="bg-pink-600 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out">Ver detalles de evento</a>
+                                    <div class="text-center">
+                                        {{ $event->name }}
+                                    </div> 
                                 </td>
                                 <td>
+                                    <div class="text-center">
+                                        <b>Inicio: </b> {{ $event->start }}  <br> <b>Fin: </b> {{ $event->end }}
+                                    </div>
+                                </td>
+                        
+                                <td>
+                                    <div class="text-center">
+                                        {{ count(json_decode($event->invited->users)) }}
+                                    </div> 
+                                </td> 
+            
+                                <td>
+                                    <div class="text-center">
+                                        @if($todayFormat >=  date('Y-m-d', strtotime($events[0]->start))   && $todayFormat <= date('Y-m-d', strtotime($events[0]->end)) )
+                                            <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">En curso</span>
+                                        @elseif($todayFormat >  date('Y-m-d', strtotime($events[0]->start))   && $todayFormat > date('Y-m-d', strtotime($events[0]->end)) )
+                                            <span class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">Finalizado</span>
+                                        @else
+                                            <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">Próximo</span>
+                                        @endif
+                                    </div> 
+                                </td>
+                                <td><br>
+                                    <div class="text-center">
+                                        <a href="{{ route('events.show', ['id' => $event->id]) }}" class="bg-pink-600 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out" >Ver detalles de evento</a>
+                                    </div>
+                                    <br>
                                     @if($event->created_by == auth()->user()->id)
-                                        <div class="text-center"> <!-- Envolver los botones en un div con clase text-center -->
+                                        <div class="flex">
                                             <button data-modal-target="static-modal" data-modal-toggle="modalEditar{{$event->id}}" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mx-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
                                                 Editar
                                             </button>
-
+                                            
                                             <button data-modal-target="delete-modal{{$event->id}}" data-modal-toggle="modalDelete{{$event->id}}" class="block text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mx-auto dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" type="button">
                                                 Eliminar
                                             </button>
@@ -310,7 +331,7 @@
                                                 </div>
                                                 
                                                 <!-- Cuerpo del modal -->
-                                                <div class="p-6 space-y-6">
+                                                <div class="p-6 space-y-6; text-center">
                                                     <p>¿Estás seguro que deseas eliminar este evento?</p>
                                                     <form method="POST" action="{{ route('events.delete', ['event_id' => $event->id]) }}">
                                                         @csrf
@@ -485,28 +506,25 @@
     </div>
 
     @section('scripts')
-    <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('form'); // Selecciona el formulario
-    const usersCheckboxes = document.querySelectorAll('input[name="users[]"]'); // Selecciona todas las casillas de verificación de usuarios
-
-    form.addEventListener('submit', function(event) {
-        const selectedUsers = Array.from(usersCheckboxes) // Convierte la lista de checkboxes en un array
-            .filter(checkbox => checkbox.checked) // Filtra solo los checkboxes seleccionados
-            .map(checkbox => checkbox.value); // Obtiene los valores de los checkboxes seleccionados
-
-        // Agrega los usuarios seleccionados como un campo oculto al formulario
-        const usersField = document.createElement('input');
-        usersField.setAttribute('type', 'hidden');
-        usersField.setAttribute('name', 'users');
-        usersField.setAttribute('value', selectedUsers.join(',')); // Puedes ajustar el separador según tus necesidades
-
-        form.appendChild(usersField); // Agrega el campo oculto al formulario
-    });
-});
-</script>
- 
-
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const form = document.querySelector('form'); // Selecciona el formulario
+                const usersCheckboxes = document.querySelectorAll('input[name="users[]"]'); // Selecciona todas las casillas de verificación de usuarios
+                
+                form.addEventListener('submit', function(event) {
+                    const selectedUsers = Array.from(usersCheckboxes) // Convierte la lista de checkboxes en un array
+                    .filter(checkbox => checkbox.checked) // Filtra solo los checkboxes seleccionados
+                    .map(checkbox => checkbox.value); // Obtiene los valores de los checkboxes seleccionados
+                    
+                    // Agrega los usuarios seleccionados como un campo oculto al formulario
+                    const usersField = document.createElement('input');
+                    usersField.setAttribute('type', 'hidden');
+                    usersField.setAttribute('name', 'users');
+                    usersField.setAttribute('value', selectedUsers.join(',')); // Puedes ajustar el separador según tus necesidades
+                    form.appendChild(usersField); // Agrega el campo oculto al formulario
+                });
+            });
+        </script>
     @endsection
 @endsection
 
