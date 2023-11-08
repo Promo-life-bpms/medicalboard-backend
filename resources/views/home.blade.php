@@ -25,6 +25,13 @@
                     <div class="font-bold text-xl mb-2">Médicos</div>
                 </div>
             </a>
+
+            <a href="{{ route('admin.index') }}" class="max-w-xs rounded overflow-hidden shadow-lg rounded-lg transition-transform hover:scale-105 cursor-pointer">
+                <img class="w-full object-cover" src="{{ asset('/img/admin.jpg')}}" alt="Imagen 2" style="height: 200px;">
+                <div class="px-6 py-4">
+                    <div class="font-bold text-xl mb-2">Administradores</div>
+                </div>
+            </a>
             
         </div>
 

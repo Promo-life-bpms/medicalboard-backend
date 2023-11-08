@@ -7,6 +7,7 @@ use App\Models\RoleUser;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class UserSeeder extends Seeder
 {
@@ -18,6 +19,21 @@ class UserSeeder extends Seeder
     public function run()
     {
 
+        //Admin
+        $create_admin_user = new User();
+        $create_admin_user->name = 'Admin';
+        $create_admin_user->lastname = 'Sistema';
+        $create_admin_user->email =  'admin@admin.com';
+        $create_admin_user->password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
+        $create_admin_user->save();
+
+        DB::table('role_user')->insert([
+            'user_id' => $create_admin_user->id,
+            'role_id' => 2,
+            'user_type' => 'App\Models\User',
+        ]);
+
+        //Medicos
         $names = [
             'Adriana Saucedo Reyes',
             'Carlos Etiene Cordero Jaime',
@@ -2329,10 +2345,11 @@ class UserSeeder extends Seeder
             $create_medical->user_id = $create_user->id ;
             $create_medical->save();
 
-            $create_user_role = new RoleUser();
-            $create_user_role->role_id = 1;
-            $create_user_role->user_id = $create_user;
-            $create_user_role->user_type = 'App\Models\User';
+            DB::table('role_user')->insert([
+                'user_id' => $create_user->id,
+                'role_id' => 1,
+                'user_type' => 'App\Models\User',
+            ]);
         
         }
 
