@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MedicalController;
@@ -44,7 +45,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/medicals/update', [MedicalController::class, 'update'])->name('medicals.update');
     Route::post('/medicals/delete', [MedicalController::class, 'delete'])->name('medicals.delete');
 
-    
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    Route::post('/admin/store', [AdminController::class, 'store'])->name('admin.store');
+    Route::post('/admin/update', [AdminController::class, 'update'])->name('admin.update');
+    Route::post('/admin/delete', [AdminController::class, 'delete'])->name('admin.delete');
 });
 
 require __DIR__.'/auth.php';

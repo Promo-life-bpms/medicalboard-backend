@@ -14,7 +14,7 @@ use PhpParser\Node\Stmt\Return_;
 class MedicalController extends Controller
 {
     public function index() {
-        $medicals = Medical::where('status', 1)->paginate(15);
+        $medicals = Medical::where('status', 1)->orderBy('id', 'desc')->paginate(15);
         return view('medical.index', compact('medicals'));
     }
 
