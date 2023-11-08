@@ -36,4 +36,9 @@ class APIController extends Controller
         }
         
     }
+
+    public function monthEvents()
+    {
+        
+    }
 }
