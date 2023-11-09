@@ -9042,6 +9042,135 @@ class UserSeeder extends Seeder
             [
             "name"=> "Patricia López Flores",
             "tagID"=> "654bd7801b942"
+            ],
+
+            [
+            "name"=> "Adriana García Sifuentes",
+            "tagID"=> "/medical/info/654d5aacdda4e"
+            ],
+            [
+            "name"=> "Alfonso Mazatan Davila",
+            "tagID"=> "/medical/info/654d5aacdeb1c"
+            ],
+            [
+            "name"=> "Angélica Gutiérrez Juárez",
+            "tagID"=> "/medical/info/654d5aace007f"
+            ],
+            [
+            "name"=> "Carlos Alberto Galindo Hernandez",
+            "tagID"=> "/medical/info/654d5aace0f2b"
+            ],
+            [
+            "name"=> "Carlos Alberto Melendrez Barrios",
+            "tagID"=> "/medical/info/654d5aace1ca5"
+            ],
+            [
+            "name"=> "Evaldo Jesús Rodríguez Mejía",
+            "tagID"=> "/medical/info/654d5aace289c"
+            ],
+            [
+            "name"=> "Francisco Ramírez Santa Rita",
+            "tagID"=> "/medical/info/654d5aace3454"
+            ],
+            [
+            "name"=> "Gabriela Delgadillo Peniche",
+            "tagID"=> "/medical/info/654d5aace3dac"
+            ],
+            [
+            "name"=> "Gabriela López Arballo",
+            "tagID"=> "/medical/info/654d5aace47b0"
+            ],
+            [
+            "name"=> "Gabriela Vicenta Santiago Soriano",
+            "tagID"=> "/medical/info/654d5aace551a"
+            ],
+            [
+            "name"=> "Gabriela Virginia Escudero Lourdes",
+            "tagID"=> "/medical/info/654d5aace5ed8"
+            ],
+            [
+            "name"=> "Gabriela Zarco Aguilar",
+            "tagID"=> "/medical/info/654d5aace68b8"
+            ],
+            [
+            "name"=> "José Gamaliel Hernández Ochoa",
+            "tagID"=> "/medical/info/654d5aace72fb"
+            ],
+            [
+            "name"=> "José Ignacio Alcántara Lomelí",
+            "tagID"=> "/medical/info/654d5aace7c60"
+            ],
+            [
+            "name"=> "Juan Carlos Melendrez Gálvez",
+            "tagID"=> "/medical/info/654d5aace87ed"
+            ],
+            [
+            "name"=> "Juan Francisco Aguilar Cañedo",
+            "tagID"=> "/medical/info/654d5aace9218"
+            ],
+            [
+            "name"=> "Juan Márquez Jiménez",
+            "tagID"=> "/medical/info/654d5aace9d9c"
+            ],
+            [
+            "name"=> "Julio César Salinas Elizondo",
+            "tagID"=> "/medical/info/654d5aaceaa12"
+            ],
+            [
+            "name"=> "Leticia Gabriela Colina Rubio",
+            "tagID"=> "/medical/info/654d5aaceb8ad"
+            ],
+            [
+            "name"=> "Luis Gerardo Martínez Valadés",
+            "tagID"=> "/medical/info/654d5aacec765"
+            ],
+            [
+            "name"=> "Luis Mauricio Franco Hernández",
+            "tagID"=> "/medical/info/654d5aaced390"
+            ],
+            [
+            "name"=> "Mario Ángel Quiñones Peña",
+            "tagID"=> "/medical/info/654d5aacedf9a"
+            ],
+            [
+            "name"=> "Mario Gerardo Villarreal Padilla",
+            "tagID"=> "/medical/info/654d5aaceeb22"
+            ],
+            [
+            "name"=> "Martha Alicia Gaxiola Paredes",
+            "tagID"=> "/medical/info/654d5aacef617"
+            ],
+            [
+            "name"=> "Nalleli Alarcon Sanchez",
+            "tagID"=> "/medical/info/654d5aacf007d"
+            ],
+            [
+            "name"=> "Octavio Rodrigo Martínez Pérez",
+            "tagID"=> "/medical/info/654d5aacf0bce"
+            ],
+            [
+            "name"=> "Pedro Pablo Galícia Herrera",
+            "tagID"=> "/medical/info/654d5aacf191c"
+            ],
+            [
+            "name"=> "Rafael de Jesús Gallo Sandoval",
+            "tagID"=> "/medical/info/654d5aacf2701"
+            ],
+            [
+            "name"=> "Reymundo Juárez Barraza",
+            "tagID"=> "/medical/info/654d5aacf317d"
+            ],
+            [
+            "name"=> "Ricardo Arturo Martínez Orpinel",
+            "tagID"=> "/medical/info/654d5aacf3c3a"
+            ],
+            [
+            "name"=> "Roberto Monteverde Ortiz",
+            "tagID"=> "/medical/info/654d5aad00464"
+            ],
+            [
+            "name"=> "Victor García Arano",
+            "tagID"=> "/medical/info/654d5aad01135"
             ]
         ];
 
