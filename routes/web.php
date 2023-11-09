@@ -39,11 +39,16 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/events', [EventController::class, 'index'])->name('events.index');
     Route::get('/events/show/{id}', [EventController::class, 'show'])->name('events.show');
-
+    Route::post('/event/create',[EventController::class,'create'])->name('events.create');
+    Route::post('/event/edit',[EventController::class,'edit'])->name('events.edit');
+    Route::post('event/delete',[EventController::class, 'delete'])->name('events.delete');
+    Route::post('user/event/add',[EventController::class, 'AddUserofEvent'])->name('user.event');
+    
     Route::get('/medicals', [MedicalController::class, 'index'])->name('medicals.index');
     Route::post('/medicals/store', [MedicalController::class, 'store'])->name('medicals.store');
     Route::post('/medicals/update', [MedicalController::class, 'update'])->name('medicals.update');
     Route::post('/medicals/delete', [MedicalController::class, 'delete'])->name('medicals.delete');
+    
 
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::post('/admin/store', [AdminController::class, 'store'])->name('admin.store');
