@@ -89,20 +89,23 @@ class MedicalController extends Controller
     }
 
     public function presentation($id)  {
-        $user = User::where('id', $id)->get()->first();
 
-
+        $medical = Medical::where('tag',$id)->get()->first();
+        $user = $medical->user;
         return view('medical.presentation', compact('user'));
     }
 
     public function medicalInfo($id) {
-        $user = User::where('id', $id)->get()->first();
+
+        $medical = Medical::where('tag',$id)->get()->first();
+        $user = $medical->user;
         return view('medical.medical-info', compact('user'));
     }
 
     public function medicalEvents($id) {
 
-        $user = User::where('id', $id)->get()->first();
+        $medical = Medical::where('tag',$id)->get()->first();
+        $user = $medical->user;
         $events_invited = EventInvited::whereRaw("JSON_CONTAINS(users, ?)", [$user->id])->get();
         $today = Date::now()->format('Y-m-d'); 
 
@@ -110,6 +113,7 @@ class MedicalController extends Controller
     }
 
     public function medicalEventDetail($id) {
+
         $event = Event::findOrFail($id); 
         $today = Date::now()->format('Y-m-d');
         return view(' medical.medical-event-info', compact('event', 'today'));
