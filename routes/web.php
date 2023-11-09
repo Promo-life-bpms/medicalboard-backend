@@ -5,6 +5,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MedicalController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,11 +20,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('index');
-Route::get('/medical/presentation/{id}', [MedicalController::class, 'presentation'])->name('medical.presentation');
-Route::get('/medical/presentation/info/{id}', [MedicalController::class, 'medicalInfo'])->name('medical.info');
-Route::get('/medical/presentation/events/{id}', [MedicalController::class, 'medicalEvents'])->name('medical.events');
-Route::get('/medical/presentation/events/detail/{id}', [MedicalController::class, 'medicalEventDetail'])->name('medical.event.detail');
+Route::get('/medical/info/{id}', [MedicalController::class, 'presentation'])->name('medical.presentation');
+Route::get('/medical/info/about/{id}', [MedicalController::class, 'medicalInfo'])->name('medical.info');
+Route::get('/medical/info/events/{id}', [MedicalController::class, 'medicalEvents'])->name('medical.events');
+Route::get('/medical/info/events/detail/{id}', [MedicalController::class, 'medicalEventDetail'])->name('medical.event.detail');
 
+
+Route::get('/testdata', [TestController::class, 'data'])->name('test');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -34,11 +37,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-
     Route::get('/events', [EventController::class, 'index'])->name('events.index');
     Route::get('/events/show/{id}', [EventController::class, 'show'])->name('events.show');
-
-
 
     Route::get('/medicals', [MedicalController::class, 'index'])->name('medicals.index');
     Route::post('/medicals/store', [MedicalController::class, 'store'])->name('medicals.store');
