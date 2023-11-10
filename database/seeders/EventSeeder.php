@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Event;
 use App\Models\EventInvited;
+use App\Models\EventLog;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -16,22 +17,33 @@ class EventSeeder extends Seeder
      */
     public function run()
     {
-        $create_event = new Event();
-        $create_event->name = 'Evento de prueba';
-        $create_event->type = 'online';
-        $create_event->start = '2023-11-03 10:00:00';
-        $create_event->end = '2023-11-03 22:00:00';
-        $create_event->url = 'https://www.google.com.mx/?hl=es';
-        $create_event->more_information = 'Sin informacion adicional';
-        $create_event->status = 1;
-        $create_event->created_by = 1;
-        $create_event->save();
-
-        $users = [1,2,3,4,5,6,7,8,9];
-        $create_event_invited = new EventInvited();
-        $create_event_invited->event_id = $create_event->id;
-        $create_event_invited->users = json_encode($users);
-        $create_event_invited->save();
+        for ($i = 0; $i < 10; $i++) {
+            $create_event = new Event();
+            $create_event->name = 'Evento #' . ($i + 1);
+            $create_event->type = rand(0, 1) ? 'online' : 'offline'; 
+            $create_event->start = now()->addDays(rand(1, 30))->setHour(rand(0, 23))->setMinute(rand(0, 59))->setSecond(0);
+            $create_event->end = $create_event->start->copy()->addHours(rand(1, 10));
+            $create_event->url = 'https://www.example.com/evento_' . ($i + 1);
+            $create_event->more_information = 'Información aleatoria para el evento #' . ($i + 1);
+            $create_event->status = rand(0, 1);
+            $create_event->created_by = rand(1, 2000);
+            $create_event->save();
+        
+            $randomUsers = range(1, 2000);
+            shuffle($randomUsers);
+            $randomInvitedUsers = array_slice($randomUsers, 0, rand(1, 20));
+        
+            $create_event_invited = new EventInvited();
+            $create_event_invited->event_id = $create_event->id;
+            $create_event_invited->users = json_encode($randomInvitedUsers);
+            $create_event_invited->save();
+        
+           /*  $create_event_log = new EventLog();
+            $create_event_log->event_id = $create_event->id;
+            $create_event_log->user_id = rand(1, 2000);
+            $create_event_log->status = rand(0, 1);
+            $create_event_log->save(); */
+        }
 
     }
 }
