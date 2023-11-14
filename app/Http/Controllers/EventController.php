@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 class EventController extends Controller
 {
@@ -232,5 +233,113 @@ class EventController extends Controller
             'users' => $combinedUserIds
         ]);
         return redirect()->back()->with('message2', 'Usuarios agregados correctamente al evento'); 
+    }
+
+    public function stadistics(Request $request) {
+        
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+
+        $id = $request->id;
+
+        $event = Event::findOrFail($id); 
+
+        $users_invited = User::whereIn('id', json_decode($event->invited->users))->get();
+
+        $users_array = collect(json_decode($event->invited->users)); 
+
+        $user_checkin = [];
+        $user_no_checkin = [];
+        
+        $users_logs = EventLog::where('event_id', $event->id)->where('status',1)->pluck('user_id')->toArray();
+
+        $users_no_invited = EventLog::where('event_id', $event->id)->where('status',0)->get();
+
+        $users_logs_collection = collect($users_logs);
+
+        foreach ($users_invited as $user) {
+
+            if ($users_logs_collection->contains($user->id)) {
+                array_push($user_checkin, $user);
+            } else {
+                array_push($user_no_checkin, $user);
+            }
+        }
+
+        $user = auth()->user();
+        $usuarios = User::all();
+    
+        $existingUserIds = DB::table('event_invited')
+                            ->where('event_id', $id)
+                            ->pluck('users')
+                            ->flatMap(function ($users) {
+                                return json_decode($users);
+                            })->toArray();
+    
+        $names = [];
+        foreach ($existingUserIds as $userId) {
+            $user = DB::table('users')->where('id', $userId)->first();
+            if ($user) {
+                $names[] = $user->name.' '. $user->lastname;
+            }
+        }
+        $nombres = implode(",", $names);
+
+        $usuariosFiltrados = $usuarios->reject(function($usuario) use ($existingUserIds) {
+            return in_array($usuario->id, $existingUserIds);
+        });
+        
+        $logs = $event->logs()->paginate(10); 
+
+
+
+
+        //Estilo
+        $styleRows = [
+            'borders' => [
+                'outline' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_MEDIUM,
+                    'color' => ['argb' => 'FF000000'],
+                ],
+            ],
+           /*  'font'  => array(
+                'size'  => 10,
+                'name'  => 'DeJaVu Sans Mono'
+            ) */
+        ];
+
+
+
+        $titleStyleRows = [
+            'borders' => [
+                'outline' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_MEDIUM,
+                    'color' => ['argb' => 'FF000000'],
+                ],
+            ],
+            'fill' => [
+                'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+                'startColor' => array('argb' => 'FFe0e0e0')
+            ],
+          /*   'font'  => array(
+                'bold'  => true,
+                'size'  => 10,
+                'name'  => 'DeJaVu Sans Mono'
+            ) */
+        ];
+
+        $sheet->setCellValue('A1', 'Nombre(s)');
+        $sheet->setCellValue('B1', 'Apellidos');
+        $sheet->setCellValue('C1', 'Evento');
+        $sheet->setCellValue('D1', 'Asistencia');
+        $sheet->setCellValue('E1', 'Hora de entrada');
+
+        header('Content-Disposition: attachment;filename="' . 'Reporte- ' . '.xls');
+        header('Cache-Control: max-age=0');
+          
+        $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xls');
+        $writer->save('php://output');
+
     }
 }

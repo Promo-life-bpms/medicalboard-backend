@@ -1,14 +1,7 @@
 <div>
     {{-- Because she competes with no one, no one can compete with her. --}}
 
-    <div class="flex">
-        <a href="{{ route('events.index')}}">
-            <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        </a>
-        <h1 class="text-3xl font-bold">{{ $event->name}}</h1>
-    </div>
+   
 
     <div class="flex space-x-4 p-4">
         <div class="bg-white rounded-lg shadow-md p-4 h-28 w-1/6">
@@ -48,7 +41,7 @@
         <p class="pt-4  text-xl font-bold ">Lista de asistentes</p>
         <!-- Modal toggle -->
         
-        <button data-modal-target="static-modal" data-modal-toggle="static-modal" class="block text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+        <button data-modal-target="static-modal" data-modal-toggle="static-modal" class="block text-white bg-pink-600 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
             Agregar usuario
         </button>
         
