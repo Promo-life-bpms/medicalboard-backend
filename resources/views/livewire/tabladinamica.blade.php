@@ -1,6 +1,49 @@
 <div>
     {{-- Because she competes with no one, no one can compete with her. --}}
 
+    <div class="flex">
+        <a href="{{ route('events.index')}}">
+            <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+        <h1 class="text-3xl font-bold">{{ $event->name}}</h1>
+    </div>
+
+    <div class="flex space-x-4 p-4">
+        <div class="bg-white rounded-lg shadow-md p-4 h-28 w-1/6">
+            <h2 class="text-lg font-semibold">Total invitados</h2>
+            <p class="text-3xl">{{count(json_decode($event->invited->users))}}</p>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-md p-4 w-1/6">
+            <h2 class="text-lg font-semibold">Asistieron</h2>
+            @if($userCheckin)
+                <p class="text-3xl">{{ count($userCheckin)}}</p>
+            @else
+                <p class="text-3xl">0</p>
+            @endif
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-4 w-1/6">
+            <h2 class="text-lg font-semibold">No Asistieron</h2>
+            @if($userNoCheckin)
+                <p class="text-3xl">{{ count($userNoCheckin)}}</p>
+            @else
+                <p class="text-3xl">0</p>
+            @endif
+        </div>
+           
+        <div class="bg-white rounded-lg shadow-md p-4 w-1/6">
+            <h2 class="text-lg font-semibold">No invitados</h2>
+            @if($usersNoInvited)
+                <p class="text-3xl">{{ count($usersNoInvited) }}</p>
+            @else
+                <p class="text-3xl">0</p>
+            @endif
+        </div>
+    </div>
+
+
     <div class="flex justify-between">
         <p class="pt-4  text-xl font-bold ">Lista de asistentes</p>
         <!-- Modal toggle -->
