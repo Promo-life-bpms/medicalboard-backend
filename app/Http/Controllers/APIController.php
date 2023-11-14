@@ -6,39 +6,57 @@ use App\Models\Event;
 use App\Models\EventInvited;
 use App\Models\EventLog;
 use App\Models\User;
+use App\Models\Medical;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+
 
 class APIController extends Controller
 {
     public function checkin(Request $request)
     {
+        $tag = $request->tag;
+        $event_id = $request->eventID;
 
         $today =  Carbon::now()->toDateString();
-        $find_user = User::where('id',intval($request->id))->get()->first();
-        $find_event = Event::whereDate('start', $today)->get()->last();
+        $find_medical = Medical::where('tag', $tag)->get()->first();
        
-        if($find_event != null && $find_event != [] && $find_user !=null){
+        if($find_medical !=null || $find_medical != '' ){
            
-            $event_invited = EventInvited::where('event_id', $find_event->id)->get()->last();
+            $event_invited = EventInvited::where('event_id', $event_id)->get()->last();
             $decoded_users = json_decode($event_invited->users, true);
     
             //1 ok , 0 no invitado
             $create_event_log = new EventLog();
-            $create_event_log->event_id = $find_event->id;
-            $create_event_log->user_id = $find_user->id;
-            $create_event_log->status = in_array($find_user->id, $decoded_users)? 1: 0;
+            $create_event_log->event_id = $event_id;
+            $create_event_log->user_id = $find_medical->user->id;
+            $create_event_log->status = in_array($find_medical->user->id, $decoded_users)? 1: 0;
             $create_event_log->save();
 
             return response('Asistencia confirmada', 200);
         }else{
-            return response('Evento no encontrado', 404); 
+            return response('Medico no encontrado', 404); 
         }
         
     }
 
     public function monthEvents()
     {
-        
+        $today = now();
+        $events = Event::whereMonth('start', $today->month)
+            ->whereMonth('end', $today->month)
+            ->get();
+
+
+        $data = [];
+
+        foreach($events as $event){
+            array_push($data, (object)[
+                'eventID' => $event->id,
+                'eventName' => $event->name,
+            ]);
+        }
+
+        return $data;
     }
 }
