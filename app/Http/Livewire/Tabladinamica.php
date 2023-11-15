@@ -78,7 +78,7 @@ class Tabladinamica extends Component
             }
         }
 
-        $this->nombres = implode(", ", $names);
+        $this->nombres =  $names;
 
         $this->usuariosFiltrados = $this->usuarios->reject(function ($usuario) use ($existingUserIds) {
             return in_array($usuario->id, $existingUserIds);

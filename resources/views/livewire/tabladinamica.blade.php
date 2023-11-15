@@ -12,33 +12,33 @@
 
     <div class="flex space-x-4 p-4">
         <div class="bg-white rounded-lg shadow-md p-4 h-28 w-1/6">
-            <h2 class="text-lg font-semibold">Total invitados</h2>
-            <p class="text-3xl">{{count(json_decode($event->invited->users))}}</p>
+            <h2 class="text-lg font-semibold text-center">Total invitados</h2>
+            <p class="text-5xl text-center" style="color:#0061a9;">{{count(json_decode($event->invited->users))}}</p>
         </div>
         
         <div class="bg-white rounded-lg shadow-md p-4 w-1/6">
-            <h2 class="text-lg font-semibold">Asistieron</h2>
+            <h2 class="text-lg font-semibold text-center">Asistieron</h2>
             @if($userCheckin)
-                <p class="text-3xl">{{ count($userCheckin)}}</p>
+                <p class="text-5xl text-center" style="color:#009975;">{{ count($userCheckin)}}</p>
             @else
-                <p class="text-3xl">0</p>
+                <p class="text-5xl text-center" style="color:#009975;">0</p>
             @endif
         </div>
         <div class="bg-white rounded-lg shadow-md p-4 w-1/6">
-            <h2 class="text-lg font-semibold">No Asistieron</h2>
+            <h2 class="text-lg font-semibold text-center">No Asistieron</h2>
             @if($userNoCheckin)
-                <p class="text-3xl">{{ count($userNoCheckin)}}</p>
+                <p class="text-5xl text-center" style="color:#cd3349;">{{ count($userNoCheckin)}}</p>
             @else
-                <p class="text-3xl">0</p>
+                <p class="text-5xl text-center" style="color:#cd3349;">0</p>
             @endif
         </div>
-           
+        
         <div class="bg-white rounded-lg shadow-md p-4 w-1/6">
-            <h2 class="text-lg font-semibold">No invitados</h2>
+            <h2 class="text-lg font-semibold text-center">No invitados</h2>
             @if($usersNoInvited)
-                <p class="text-3xl">{{ count($usersNoInvited) }}</p>
+                <p class="text-5xl text-center" style="color:#eab756;">{{ count($usersNoInvited) }}</p>
             @else
-                <p class="text-3xl">0</p>
+                <p class="text-5xl text-center" style="color:#eab756;">0</p>
             @endif
         </div>
     </div>
@@ -83,7 +83,9 @@
 
                                 <div>
                                     <label for="usuarios">Usuarios ya invitados:</label>
-                                    <p> {{$nombres}} </P>     
+                                    @foreach($nombres as $index => $nombre)
+                                        <p>{{ $nombre }}</p>
+                                    @endforeach   
                                 </div>
 
                                 <label for="users">Selecciona un usuario</label>
@@ -166,6 +168,38 @@
             </tbody>
         </table>
     </div>
+
+    <div>
+        <p class="pt-8 pb-4 text-xl font-bold">Lista de invitados que no asistieron</p>
+        <table class="table-auto w-full mt-4">
+            <thead class="bg-stone-100 h-12 border">
+                <tr>
+                    <th style="width: 10%;">#</th>
+                    <th style="width: 70%;">Nombre</th>
+                    <th style="width: 20%;">Status</th>
+                </tr>
+            </thead>
+            
+            <tbody class="text-center">
+                @foreach($userNoCheckin as $index => $nombre)
+                    <tr class="border">
+                        <td class="p-2">{{ $index + 1 }}</td>
+                        
+                        <td>
+                            @if ($nombre && $nombre->medical)
+                                {{$nombre->medical->degree}} {{$nombre->name}} {{ $nombre->lastname }}
+                            @else
+                                Datos médicos no disponibles
+                            @endif
+                        </td>
+                        <td>
+                            <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">No asistió / pendiente</span>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>
 
 @livewireScripts
@@ -179,8 +213,6 @@
             });
         });
     </script>
-
-
 @endsection
 
 
