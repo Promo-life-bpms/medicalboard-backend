@@ -76,7 +76,9 @@
 
                                 <div>
                                     <label for="usuarios">Usuarios ya invitados:</label>
-                                    <p> {{$nombres}} </P>     
+                                    @foreach($nombres as $index => $nombre)
+                                        <p>{{ $nombre }}</p>
+                                    @endforeach   
                                 </div>
 
                                 <label for="users">Selecciona un usuario</label>
@@ -158,6 +160,40 @@
                 @endforeach
             </tbody>
         </table>
+        <br>
+        {{$logs->links()}}
+    </div>
+
+    <div>
+        <p class="pt-8 pb-4 text-xl font-bold">Lista de invitados que no asistieron</p>
+        <table class="table-auto w-full mt-4">
+            <thead class="bg-stone-100 h-12 border">
+                <tr>
+                    <th style="width: 10%;">#</th>
+                    <th style="width: 70%;">Nombre</th>
+                    <th style="width: 20%;">Status</th>
+                </tr>
+            </thead>
+            
+            <tbody class="text-center">
+                @foreach($userNoCheckin as $index => $nombre)
+                    <tr class="border">
+                        <td class="p-2">{{ $index + 1 }}</td>
+                        
+                        <td>
+                            @if ($nombre && $nombre->medical)
+                                {{$nombre->medical->degree}} {{$nombre->name}} {{ $nombre->lastname }}
+                            @else
+                                Datos médicos no disponibles
+                            @endif
+                        </td>
+                        <td>
+                            <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">No asistió / pendiente</span>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 
     <p class="pt-8 pb-4 text-xl font-bold">Lista de invitados que no asistieron</p>
@@ -196,8 +232,6 @@
             });
         });
     </script>
-
-
 @endsection
 
 
