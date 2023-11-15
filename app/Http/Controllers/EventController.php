@@ -236,17 +236,13 @@ class EventController extends Controller
     }
 
     public function stadistics(Request $request) {
-        
-        $spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
-
 
         $id = $request->id;
 
         $event = Event::findOrFail($id); 
 
         $users_invited = User::whereIn('id', json_decode($event->invited->users))->get();
-
+        
         $users_array = collect(json_decode($event->invited->users)); 
 
         $user_checkin = [];
@@ -254,8 +250,12 @@ class EventController extends Controller
         
         $users_logs = EventLog::where('event_id', $event->id)->where('status',1)->pluck('user_id')->toArray();
 
-        $users_no_invited = EventLog::where('event_id', $event->id)->where('status',0)->get();
+        //Usuarios que asistieron pero no fueron invitados
+        $event_users_no_invited = EventLog::where('event_id', $event->id)->where('status',0)->get()->pluck('user_id');
+        $users_no_invited = User::whereIn('id',$event_users_no_invited)->get();
 
+        /* $all_users = $users_invited->merge($users_no_invited); */
+        
         $users_logs_collection = collect($users_logs);
 
         foreach ($users_invited as $user) {
@@ -267,33 +267,9 @@ class EventController extends Controller
             }
         }
 
-        $user = auth()->user();
-        $usuarios = User::all();
-    
-        $existingUserIds = DB::table('event_invited')
-                            ->where('event_id', $id)
-                            ->pluck('users')
-                            ->flatMap(function ($users) {
-                                return json_decode($users);
-                            })->toArray();
-    
-        $names = [];
-        foreach ($existingUserIds as $userId) {
-            $user = DB::table('users')->where('id', $userId)->first();
-            if ($user) {
-                $names[] = $user->name.' '. $user->lastname;
-            }
-        }
-        $nombres = implode(",", $names);
-
-        $usuariosFiltrados = $usuarios->reject(function($usuario) use ($existingUserIds) {
-            return in_array($usuario->id, $existingUserIds);
-        });
-        
-        $logs = $event->logs()->paginate(10); 
-
-
-
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setTitle('Asistieron');
 
         //Estilo
         $styleRows = [
@@ -329,13 +305,71 @@ class EventController extends Controller
             ) */
         ];
 
+        $spreadsheet->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+
+
+        $contador_col = 1;
+
         $sheet->setCellValue('A1', 'Nombre(s)');
         $sheet->setCellValue('B1', 'Apellidos');
         $sheet->setCellValue('C1', 'Evento');
-        $sheet->setCellValue('D1', 'Asistencia');
+        $sheet->setCellValue('D1', 'Status de asistencia');
         $sheet->setCellValue('E1', 'Hora de entrada');
+        
+        foreach($user_checkin as $user_check){
+            $contador_col =  $contador_col + 1;
+            
+            $sheet->setCellValue('A'. $contador_col, $user_check->name);
+            $sheet->setCellValue('B'. $contador_col, $user_check->lastname);
+            $sheet->setCellValue('C'. $contador_col, $event->name);
+            $sheet->setCellValue('D'. $contador_col, 'Asistió');
+            $sheet->setCellValue('E'. $contador_col, $user_check->created_at);
+        }
 
-        header('Content-Disposition: attachment;filename="' . 'Reporte- ' . '.xls');
+        foreach($users_no_invited as $user_no_invited){
+            $contador_col =  $contador_col + 1;
+            
+            $sheet->setCellValue('A'. $contador_col, $user_no_invited->name);
+            $sheet->setCellValue('B'. $contador_col, $user_no_invited->lastname);
+            $sheet->setCellValue('C'. $contador_col, $event->name);
+            $sheet->setCellValue('D'. $contador_col, 'No invitado');
+            $sheet->setCellValue('E'. $contador_col, $user_no_invited->created_at);
+        }
+
+        $spreadsheet->createSheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $spreadsheet->setActiveSheetIndex(1); 
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setTitle('No asistieron');
+
+        $page2_contador = 1;
+
+        $sheet->setCellValue('A1', 'Nombre(s)');
+        $sheet->setCellValue('B1', 'Apellidos');
+        $sheet->setCellValue('C1', 'Evento');
+        $sheet->setCellValue('D1', 'Status de asistencia');
+
+        $spreadsheet->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+
+        foreach($user_checkin as $user_check){
+            $page2_contador =  $page2_contador + 1;
+
+            $sheet->setCellValue('A'. $page2_contador, $user_check->name);
+            $sheet->setCellValue('B'. $page2_contador, $user_check->lastname);
+            $sheet->setCellValue('C'. $page2_contador, $event->name);
+            $sheet->setCellValue('D'. $page2_contador, 'No asistió');
+            
+        }
+
+        header('Content-Disposition: attachment;filename="' . $event->name . '.xls');
         header('Cache-Control: max-age=0');
           
         $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xls');

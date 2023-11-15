@@ -118,7 +118,7 @@
                 @foreach($users_no_invited as $log)
                 <tr class="border">
                     <th class="p-2">{{$loop->iteration}}</th>
-                    <th>{{ $log->user->medical->degree . ' ' . $log->user->name . ' ' . $log->user->lastname }}</th>
+                    <th>{{ (isset( $log->user->medical->degree)?  $log->user->medical->degree : '') . ' ' . $log->user->name . ' ' . $log->user->lastname }}</th>
                     <th>
                         <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">No asistió / pendiente</span>
                     </th>
