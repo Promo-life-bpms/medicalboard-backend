@@ -14,7 +14,6 @@ class Tabladinamica extends Component
     use WithPagination;
 
     public $event;
-    public $logs;
     public $userCheckin = [];
     public $userNoCheckin = [];
     public $usersNoInvited;
@@ -31,7 +30,6 @@ class Tabladinamica extends Component
     public function mount($id)
     {
         $this->event = Event::findOrFail($id);
-        $this->loadData();
     }
 
     public function loadData()
@@ -83,15 +81,13 @@ class Tabladinamica extends Component
         $this->usuariosFiltrados = $this->usuarios->reject(function ($usuario) use ($existingUserIds) {
             return in_array($usuario->id, $existingUserIds);
         });
-        
-        $this->logs = $this->event->logs;
-
-
     }
 
     public function render()
     {
-        return view('livewire.tabladinamica');
+        $this->loadData();
+        $logs = $this->event->logs()->paginate(10);
+        return view('livewire.tabladinamica', compact("logs"));
     }
 
     public function updateLogs()

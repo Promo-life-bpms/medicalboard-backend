@@ -83,9 +83,9 @@
 
         
 
-        <div class="pagination-container text-right mt-10">
+        {{-- <div class="pagination-container text-right mt-10">
             {{ $logs->links() }}
-        </div>
+        </div> --}}
     </div>
 
     <div class="mt-40"></div>

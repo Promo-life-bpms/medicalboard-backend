@@ -167,6 +167,8 @@
                 @endforeach
             </tbody>
         </table>
+        <br>
+        {{$logs->links()}}
     </div>
 
     <div>
