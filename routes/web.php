@@ -25,7 +25,6 @@ Route::get('/medical/info/about/{id}', [MedicalController::class, 'medicalInfo']
 Route::get('/medical/info/events/{id}', [MedicalController::class, 'medicalEvents'])->name('medical.events');
 Route::get('/medical/info/events/detail/{id}', [MedicalController::class, 'medicalEventDetail'])->name('medical.event.detail');
 
-
 Route::get('/testdata', [TestController::class, 'data'])->name('test');
 
 Route::get('/dashboard', function () {
@@ -54,6 +53,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/admin/store', [AdminController::class, 'store'])->name('admin.store');
     Route::post('/admin/update', [AdminController::class, 'update'])->name('admin.update');
     Route::post('/admin/delete', [AdminController::class, 'delete'])->name('admin.delete');
+
+    Route::post('/stadistics', [EventController::class, 'stadistics'])->name('admin.event.stadistics');
+
+    
 });
 
 require __DIR__.'/auth.php';
