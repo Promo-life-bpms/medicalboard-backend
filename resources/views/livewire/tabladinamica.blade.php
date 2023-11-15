@@ -1,44 +1,37 @@
 <div>
     {{-- Because she competes with no one, no one can compete with her. --}}
 
-    <div class="flex">
-        <a href="{{ route('events.index')}}">
-            <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        </a>
-        <h1 class="text-3xl font-bold">{{ $event->name}}</h1>
-    </div>
+   
 
     <div class="flex space-x-4 p-4">
         <div class="bg-white rounded-lg shadow-md p-4 h-28 w-1/6">
-            <h2 class="text-lg font-semibold">Total invitados</h2>
-            <p class="text-3xl">{{count(json_decode($event->invited->users))}}</p>
+            <h2 class="text-lg font-semibold text-center">Total invitados</h2>
+            <p class="text-5xl text-center" style="color:#0061a9;">{{count(json_decode($event->invited->users))}}</p>
         </div>
         
         <div class="bg-white rounded-lg shadow-md p-4 w-1/6">
-            <h2 class="text-lg font-semibold">Asistieron</h2>
+            <h2 class="text-lg font-semibold text-center">Asistieron</h2>
             @if($userCheckin)
-                <p class="text-3xl">{{ count($userCheckin)}}</p>
+                <p class="text-5xl text-center" style="color:#009975;">{{ count($userCheckin)}}</p>
             @else
-                <p class="text-3xl">0</p>
+                <p class="text-5xl text-center" style="color:#009975;">0</p>
             @endif
         </div>
         <div class="bg-white rounded-lg shadow-md p-4 w-1/6">
-            <h2 class="text-lg font-semibold">No Asistieron</h2>
+            <h2 class="text-lg font-semibold text-center">No Asistieron</h2>
             @if($userNoCheckin)
-                <p class="text-3xl">{{ count($userNoCheckin)}}</p>
+                <p class="text-5xl text-center" style="color:#cd3349;">{{ count($userNoCheckin)}}</p>
             @else
-                <p class="text-3xl">0</p>
+                <p class="text-5xl text-center" style="color:#cd3349;">0</p>
             @endif
         </div>
-           
+        
         <div class="bg-white rounded-lg shadow-md p-4 w-1/6">
-            <h2 class="text-lg font-semibold">No invitados</h2>
+            <h2 class="text-lg font-semibold text-center">No invitados</h2>
             @if($usersNoInvited)
-                <p class="text-3xl">{{ count($usersNoInvited) }}</p>
+                <p class="text-5xl text-center" style="color:#eab756;">{{ count($usersNoInvited) }}</p>
             @else
-                <p class="text-3xl">0</p>
+                <p class="text-5xl text-center" style="color:#eab756;">0</p>
             @endif
         </div>
     </div>
@@ -48,7 +41,7 @@
         <p class="pt-4  text-xl font-bold ">Lista de asistentes</p>
         <!-- Modal toggle -->
         
-        <button data-modal-target="static-modal" data-modal-toggle="static-modal" class="block text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+        <button data-modal-target="static-modal" data-modal-toggle="static-modal" class="block text-white bg-pink-600 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
             Agregar usuario
         </button>
         
@@ -83,7 +76,9 @@
 
                                 <div>
                                     <label for="usuarios">Usuarios ya invitados:</label>
-                                    <p> {{$nombres}} </P>     
+                                    @foreach($nombres as $index => $nombre)
+                                        <p>{{ $nombre }}</p>
+                                    @endforeach   
                                 </div>
 
                                 <label for="users">Selecciona un usuario</label>
@@ -165,7 +160,65 @@
                 @endforeach
             </tbody>
         </table>
+        <br>
+        {{$logs->links()}}
     </div>
+
+    <div>
+        <p class="pt-8 pb-4 text-xl font-bold">Lista de invitados que no asistieron</p>
+        <table class="table-auto w-full mt-4">
+            <thead class="bg-stone-100 h-12 border">
+                <tr>
+                    <th style="width: 10%;">#</th>
+                    <th style="width: 70%;">Nombre</th>
+                    <th style="width: 20%;">Status</th>
+                </tr>
+            </thead>
+            
+            <tbody class="text-center">
+                @foreach($userNoCheckin as $index => $nombre)
+                    <tr class="border">
+                        <td class="p-2">{{ $index + 1 }}</td>
+                        
+                        <td>
+                            @if ($nombre && $nombre->medical)
+                                {{$nombre->medical->degree}} {{$nombre->name}} {{ $nombre->lastname }}
+                            @else
+                                Datos médicos no disponibles
+                            @endif
+                        </td>
+                        <td>
+                            <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">No asistió / pendiente</span>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
+    <p class="pt-8 pb-4 text-xl font-bold">Lista de invitados que no asistieron</p>
+    
+    <table class="table-auto w-full">
+        <thead class="bg-stone-100 h-12 border">
+            <tr>
+                <th style="width: 10%;">#</th>
+                <th style="width: 70%;">Nombre</th>
+                <th style="width: 20%;">Status</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            @foreach($usersNoInvited as $log)
+                <tr class="border">
+                    <th class="p-2">{{ $loop->iteration }}</th>
+                    <th>{{ $log->user->medical->degree . ' ' . $log->user->name . ' ' . $log->user->lastname }}</th>
+                    <th>
+                        <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">No asistió / pendiente</span>
+                    </th>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 </div>
 
 @livewireScripts
@@ -179,8 +232,6 @@
             });
         });
     </script>
-
-
 @endsection
 
 
