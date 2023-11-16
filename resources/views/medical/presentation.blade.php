@@ -26,20 +26,13 @@
     }
 </style>
 
-<body class="bg-black"> 
+<body style="background-color: black;"> 
    
     
     <div class="w-full flex flex-col items-center justify-center bg-black">
 
-        <div class="flex justify-between relative bg-black">
-            <div>
-                
-            </div>
-            <div>
-                <img src="{{ asset('/img/bg-medical.png')}}" alt="derecha" class="imagen-derecha1 absolute right-0" style="width: 300px;">
-            </div>
-        </div>
-        
+        <img src="{{ asset('/img/bg-medical.png')}}" alt="derecha" class="imagen-derecha1 absolute top-0 right-0 " style="width: 300px; z-index:4;">
+
         <div class="w-full pt-12 flex items-center justify-center bg-black">
             <div class="mx-auto relative" style="width: 280px;">
                 <div class=" rounded-full ">
