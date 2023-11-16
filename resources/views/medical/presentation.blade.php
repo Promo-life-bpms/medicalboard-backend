@@ -6,6 +6,9 @@
 @section('content')
 
 <style>
+    body{
+        background-color: black !important;  
+    }
     @media (max-width: 640px) {
         .imagen-izquierda1 {
             width: 130px !important; 
@@ -20,15 +23,10 @@
         }
         .imagen-derecha2 {
             width: 115px !important; 
-        }
-
-        
+        }     
     }
 </style>
-
-<body style="background-color: black;"> 
-   
-    
+ 
     <div class="w-full flex flex-col items-center justify-center bg-black">
 
         <img src="{{ asset('/img/bg-medical.png')}}" alt="derecha" class="imagen-derecha1 absolute top-0 right-0 " style="width: 300px; z-index:4;">
@@ -123,8 +121,5 @@
         <div class="mb-20"></div>
       
     </div>
-
-</body>
-
-    
+ 
 @endsection
