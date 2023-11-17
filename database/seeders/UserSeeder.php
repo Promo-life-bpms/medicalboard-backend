@@ -9171,7 +9171,33 @@ class UserSeeder extends Seeder
             [
             "name"=> "Victor García Arano",
             "tagID"=> "654d5aad01135"
+            ],
+
+            [
+            "name"=> "Fernando Alberto Varela Bañuelos",
+            "tagID"=> "655783ad46366"
+            ],
+            [
+            "name"=> "Karen Gomez Arredondo",
+            "tagID"=> "655783ad48978"
+            ],
+            [
+            "name"=> "Adrían Varga Archundia",
+            "tagID"=> "655783ad4a972"
+            ],
+            [
+            "name"=> "Edgar Miguel Ramírez Ramírez",
+            "tagID"=> "655783ad4c2a3"
+            ],
+            [
+            "name"=> "Juan Carlos Yahir Coutiño Guzmán",
+            "tagID"=> "655783ad4dcbb"
+            ],
+            [
+            "name"=> "Patricia Sonia López Garcés",
+            "tagID"=> "655783ad4f92b"
             ]
+    
         ];
 
 
@@ -9191,7 +9217,6 @@ class UserSeeder extends Seeder
             'Consuelo', 'Angélica', 'Griselda', 'Mónica', 'Norma', 'Roxana', 'Yolanda', 'Lilia', 'Rosario', 'Zulema'
         ];
        
-        $users = [];
         
         foreach ($medicals as $medical) {
             $random_numbers = rand(01, 20);
