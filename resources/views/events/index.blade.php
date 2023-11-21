@@ -201,7 +201,19 @@
                                                         <br>
                                                     @enderror
                                                 </div>
-
+                                                
+                                                <div class= "flex">
+                                                    <div class="flex items-center m-4">
+                                                        <input id="default-radio-1" name="usuarios" type="radio" value="muestra" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                        <label for="default-radio-1" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Invitar a todos los usuarios</label>
+                                                    </div>
+                                                
+                                                    <div class="flex items-center">
+                                                        <input id="default-radio-2" name="usuarios" type="radio" value="muestra2" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                        <label for="default-radio-2" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Seleccionar manualmente a los usuarios</label>
+                                                    </div>
+                                                </div>
+                                        
                                                 <button id="dropdownSearchButton" data-dropdown-toggle="dropdownSearch" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Usuarios<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/></svg>
                                                 </button>
@@ -219,6 +231,11 @@
                                                             <input type="text" id="input-group-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search user">
                                                         </div>
                                                     </div>
+                                                    {{-- <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                                                        <input id="selectAllButton" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                        <label for="selectAllButton" class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">Seleccionar Todos</label>
+                                                    </div> --}}
+                                                    
                                                     <ul class="h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownSearchButton">
                                                         @foreach($usuarios as $usuario)
                                                             <li>
@@ -301,12 +318,12 @@
                                     </div>
                                     <br>
                                     @if($event->created_by == auth()->user()->id)
-                                        <div class="flex">
-                                            <button data-modal-target="static-modal" data-modal-toggle="modalEditar{{$event->id}}" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mx-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+                                        <div class="flex justify-center">
+                                            <button data-modal-target="static-modal" data-modal-toggle="modalEditar{{$event->id}}" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 w-1/3 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
                                                 Editar
                                             </button>
                                             
-                                            <button data-modal-target="delete-modal{{$event->id}}" data-modal-toggle="modalDelete{{$event->id}}" class="block text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mx-auto dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" type="button">
+                                            <button data-modal-target="delete-modal{{$event->id}}" data-modal-toggle="modalDelete{{$event->id}}" class="block text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 w-1/3 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" type="button">
                                                 Eliminar
                                             </button>
                                         </div>
@@ -506,25 +523,72 @@
     </div>
 
     @section('scripts')
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const form = document.querySelector('form'); // Selecciona el formulario
-                const usersCheckboxes = document.querySelectorAll('input[name="users[]"]'); // Selecciona todas las casillas de verificación de usuarios
-                
-                form.addEventListener('submit', function(event) {
-                    const selectedUsers = Array.from(usersCheckboxes) // Convierte la lista de checkboxes en un array
-                    .filter(checkbox => checkbox.checked) // Filtra solo los checkboxes seleccionados
-                    .map(checkbox => checkbox.value); // Obtiene los valores de los checkboxes seleccionados
-                    
-                    // Agrega los usuarios seleccionados como un campo oculto al formulario
-                    const usersField = document.createElement('input');
-                    usersField.setAttribute('type', 'hidden');
-                    usersField.setAttribute('name', 'users');
-                    usersField.setAttribute('value', selectedUsers.join(',')); // Puedes ajustar el separador según tus necesidades
-                    form.appendChild(usersField); // Agrega el campo oculto al formulario
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form'); // Selecciona el formulario
+            const usersCheckboxes = document.querySelectorAll('input[name="users[]"]'); // Selecciona todas las casillas de verificación de usuarios
+            //const selectAllButton = document.getElementById('selectAllButton'); // Selecciona el botón "Seleccionar Todos"
+            const searchInput = document.getElementById('input-group-search'); // Selecciona la barra de búsqueda
+
+            // Evento de clic en el botón "Seleccionar Todos"
+            /*selectAllButton.addEventListener('click', function() {
+                // Marcar o desmarcar todas las casillas de verificación según el estado del botón
+                const isChecked = selectAllButton.checked;
+                usersCheckboxes.forEach(checkbox => checkbox.checked = isChecked);
+            });*/
+
+            // Evento de entrada en la barra de búsqueda
+            searchInput.addEventListener('input', function() {
+                const searchTerm = searchInput.value.toLowerCase();
+
+                // Filtrar la lista de usuarios según el término de búsqueda
+                usersCheckboxes.forEach(checkbox => {
+                    const userName = checkbox.nextElementSibling.textContent.toLowerCase();
+                    const isVisible = userName.includes(searchTerm);
+                    checkbox.closest('li').style.display = isVisible ? 'block' : 'none';
                 });
             });
-        </script>
-    @endsection
+
+            form.addEventListener('submit', function(event) {
+                const selectedUsers = Array.from(usersCheckboxes)
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => checkbox.value);
+
+                const usersField = document.createElement('input');
+                usersField.setAttribute('type', 'hidden');
+                usersField.setAttribute('name', 'users');
+                usersField.setAttribute('value', selectedUsers.join(','));
+                form.appendChild(usersField);
+            });
+        });
+    </script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const radio1 = document.getElementById('default-radio-1');
+            const radio2 = document.getElementById('default-radio-2');
+            const dropdownSearchButton = document.getElementById('dropdownSearchButton');
+
+            function toggleUsuariosButton() {
+                if (radio1.checked) {
+                    // Si el radio button 1 está seleccionado, ocultar el botón "Usuarios"
+                    dropdownSearchButton.style.display = 'none';
+                } else {
+                    // Si el radio button 1 no está seleccionado, mostrar el botón "Usuarios"
+                    dropdownSearchButton.style.display = 'inline-flex';
+                }
+            }
+            
+            // Llamamos a la función toggleUsuariosButton al cargar la página para asegurarnos de que el estado inicial sea correcto
+            toggleUsuariosButton();
+            
+            // Agregamos listeners de cambio para ambos radio buttons
+            radio1.addEventListener('change', toggleUsuariosButton);
+            radio2.addEventListener('change', toggleUsuariosButton);
+        });
+    </script>
+@endsection
+
+
 @endsection
 

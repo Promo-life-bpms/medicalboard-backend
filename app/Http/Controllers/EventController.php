@@ -90,6 +90,7 @@ class EventController extends Controller
 
     public function create(Request $request)
     {
+
         $user = auth()->user();
         $this->validate($request, [
             'name' => 'required',
@@ -101,7 +102,7 @@ class EventController extends Controller
             'end' => 'required',
             'url' => 'required',
             'more_information' => 'required',
-            'users' => 'required'
+            //'users' => 'required'
         ]);
         if ($request->hasFile('img')) {
             $filenameWithExt = $request->file('img')->getClientOriginalName();
@@ -122,7 +123,7 @@ class EventController extends Controller
         if ($fechastart <= $fechaActual) {
             return redirect()->back()->with('message2', 'No puedes crear un evento en una fecha pasada');
         }
-
+    
         $event= Event::create([
             'name' => $request->name,
             'description' => $request->description,
@@ -138,12 +139,21 @@ class EventController extends Controller
             'created_by' => $user->id
         ]);
 
-        $userIds = $request->users;
 
-        EventInvited::create([
-            'users' => json_encode($userIds),
-            'event_id' => $event->id,            
-        ]);
+        if ($request->usuarios == "muestra") {
+            $invitados = DB::table('users')->pluck('id');
+            EventInvited::create([
+                'users' => json_encode($invitados),
+                'event_id' => $event->id,            
+            ]);
+        }
+        else{
+            $us = $request->users;
+            EventInvited::create([
+                'users' => json_encode($us),
+                'event_id' => $event->id,            
+            ]);
+        }
 
         return redirect()->back()->with('message', "Evento creada correctamente.");
         
@@ -210,28 +220,48 @@ class EventController extends Controller
     public function AddUserofEvent(Request $request)
     {
         $user = auth()->user();
-
-        $this->validate($request, [
-            'users' => 'required',
-            'event_id' => 'required'
-        ]);  
         
-        // Obtener usuarios existentes en el evento
-        $existingUserIds = DB::table('event_invited')
-                            ->where('event_id', $request->event_id)
-                            ->pluck('users')
-                            ->flatMap(function ($users) {
-                            return json_decode($users);
-                        });
+        $this->validate($request, [
+            'event_id' => 'required'
+        ]); 
 
-        // Obtener los nuevos usuarios proporcionados en $request->users si es un string de JSON
-        $newUserIds = is_array($request->users) ? $request->users : json_decode($request->users);
-        // Combinar los usuarios existentes y nuevos
-        $combinedUserIds = $existingUserIds->merge($newUserIds);
+        if ($request->usuarios == "muestra"){
+            // Obtener usuarios existentes en el evento
+            $existingUsers = DB::table('event_invited')->where('event_id', $request->event_id)->first();
+        
+            $existingUserIds = $existingUsers ? json_decode($existingUsers->users, true) : [];
+        
+            // Obtener todos los usuarios excepto los ya existentes
+            $usuariosFiltrados = User::whereNotIn('id', $existingUserIds)->pluck('id')->toArray();
+            //dd($usuariosFiltrados);
+        
+            $combinedUserIds = array_unique(array_merge($existingUserIds, $usuariosFiltrados));
 
-        DB::table('event_invited')->where('id', $request->event_id)->update([
-            'users' => $combinedUserIds
-        ]);
+            // Actualizar la base de datos
+            DB::table('event_invited')->where('event_id', $request->event_id)
+                                    ->update([
+                                        'users' => json_encode($combinedUserIds)
+                                    ]);
+        }
+        else{
+            // Obtener usuarios existentes en el evento
+            $existingUsers = DB::table('event_invited')->where('event_id', $request->event_id)
+                                                    ->first();
+            
+            $existingUserIds = $existingUsers ? json_decode($existingUsers->users, true) : [];
+
+            // Obtener los nuevos usuarios proporcionados en $request->user
+            $newUserIds = is_array($request->users) ? $request->users : json_decode($request->users, true);
+
+            // Combinar los usuarios existentes y nuevos
+            $combinedUserIds = array_unique(array_merge($existingUserIds, $newUserIds));
+
+            // Actualizar la base de datos
+            DB::table('event_invited')->where('event_id', $request->event_id)
+                                    ->update([
+                                        'users' => json_encode($combinedUserIds)
+                                    ]);
+        }                            
         return redirect()->back()->with('message2', 'Usuarios agregados correctamente al evento'); 
     }
 
