@@ -29,7 +29,7 @@ class APIController extends Controller
             //1 ok , 0 no invitado
             $check_medical_log = EventLog::where('event_id', $event_id)->where('user_id', $find_medical->user->id)->get()->first();
 
-            if(count($check_medical_log )==0){
+            if($check_medical_log ==null){
                 $create_event_log = new EventLog();
                 $create_event_log->event_id = $event_id;
                 $create_event_log->user_id = $find_medical->user->id;
