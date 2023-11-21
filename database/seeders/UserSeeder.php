@@ -1259,10 +1259,10 @@ class UserSeeder extends Seeder
             "name"=> "Héctor Francisco Marín Salvati",
             "tagID"=> "654bd777a5bf8"
             ],
-            [
+            /* [
             "name"=> "Emmanuel Ramirez Sanchez",
             "tagID"=> "654bd777a69fc"
-            ],
+            ], */
             [
             "name"=> "Jaime Abraham Ceballos Flores",
             "tagID"=> "654bd777a7846"
@@ -1987,10 +1987,10 @@ class UserSeeder extends Seeder
             "name"=> "Alfonso de Jesús Díaz Noveló",
             "tagID"=> "654bd77867aef"
             ],
-            [
+            /* [
             "name"=> "Denise Rosalba Guzman Lara",
             "tagID"=> "654bd77868959"
-            ],
+            ], */
             [
             "name"=> "Carlos Antonio Castillo Rosado",
             "tagID"=> "654bd778698fb"
@@ -3951,10 +3951,10 @@ class UserSeeder extends Seeder
             "name"=> "Jorge Alberto Martínez Favela",
             "tagID"=> "654bd77a8fdfd"
             ],
-            [
+            /* [
             "name"=> "Jorge Pérez Lucio",
             "tagID"=> "654bd77a90fd1"
-            ],
+            ], */
             [
             "name"=> "Jorge Antonio Rodríguez Mireles",
             "tagID"=> "654bd77a92292"
@@ -7775,10 +7775,10 @@ class UserSeeder extends Seeder
             "name"=> "Ana Karina Aguilera Lopez",
             "tagID"=> "654bd77ec57f1"
             ],
-            [
+            /* [
             "name"=> "Patricia Méndez Paredes",
             "tagID"=> "654bd77ec6848"
-            ],
+            ], */
             [
             "name"=> "Juan Jose Perez Barragan",
             "tagID"=> "654bd77ec7742"
@@ -9104,10 +9104,10 @@ class UserSeeder extends Seeder
             "name"=> "Juan Carlos Melendrez Gálvez",
             "tagID"=> "654d5aace87ed"
             ],
-            [
+            /* [
             "name"=> "Juan Francisco Aguilar Cañedo",
             "tagID"=> "654d5aace9218"
-            ],
+            ], */
             [
             "name"=> "Juan Márquez Jiménez",
             "tagID"=> "654d5aace9d9c"
