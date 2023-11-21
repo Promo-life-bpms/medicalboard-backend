@@ -27,11 +27,15 @@ class APIController extends Controller
             $decoded_users = json_decode($event_invited->users, true);
     
             //1 ok , 0 no invitado
-            $create_event_log = new EventLog();
-            $create_event_log->event_id = $event_id;
-            $create_event_log->user_id = $find_medical->user->id;
-            $create_event_log->status = in_array($find_medical->user->id, $decoded_users)? 1: 0;
-            $create_event_log->save();
+            $check_medical_log = EventLog::where('event_id', $event_id)->where('user_id', $find_medical->user->id)->get()->first();
+
+            if(count($check_medical_log )==0){
+                $create_event_log = new EventLog();
+                $create_event_log->event_id = $event_id;
+                $create_event_log->user_id = $find_medical->user->id;
+                $create_event_log->status = in_array($find_medical->user->id, $decoded_users)? 1: 0;
+                $create_event_log->save();
+            }
 
             return response('Asistencia confirmada', 200);
         }else{
