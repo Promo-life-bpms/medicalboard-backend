@@ -110,31 +110,6 @@
    
 @endsection
 
-
-@section('scripts')
-    <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('form'); // Selecciona el formulario
-    const usersCheckboxes = document.querySelectorAll('input[name="users[]"]'); // Selecciona todas las casillas de verificación de usuarios
-
-    form.addEventListener('submit', function(event) {
-        const selectedUsers = Array.from(usersCheckboxes) // Convierte la lista de checkboxes en un array
-            .filter(checkbox => checkbox.checked) // Filtra solo los checkboxes seleccionados
-            .map(checkbox => checkbox.value); // Obtiene los valores de los checkboxes seleccionados
-
-        // Agrega los usuarios seleccionados como un campo oculto al formulario
-        const usersField = document.createElement('input');
-        usersField.setAttribute('type', 'hidden');
-        usersField.setAttribute('name', 'users');
-        usersField.setAttribute('value', selectedUsers.join(',')); // Puedes ajustar el separador según tus necesidades
-
-        form.appendChild(usersField); // Agrega el campo oculto al formulario
-    });
-});
-</script>
- 
-
-    @endsection
     
 @section('styles')
 <style>
