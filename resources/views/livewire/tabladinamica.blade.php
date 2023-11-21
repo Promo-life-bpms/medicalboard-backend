@@ -45,7 +45,7 @@
 
 
     <div class="flex justify-between">
-        <p class="pt-4  text-xl font-bold ">Lista de asistentes</p>
+        <p class="pt-4  text-xl font-bold ">información del evento (Usuarios)</p>
         <!-- Modal toggle -->
         
         <button data-modal-target="static-modal" data-modal-toggle="static-modal" class="block text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
@@ -134,73 +134,80 @@
             </div>
         </div>
     </div>
-    <div wire:poll.1000ms="updateLogs">
-        <table class="table-auto w-full mt-4" >
-            <thead class="bg-stone-100 h-12 border">
-                <tr >
-                    <th style="width: 10%;">#</th>
-                    <th style="width: 50%;">Nombre</th>
-                    <th style="width: 20%;">Hora de entrada</th>
-                    <th style="width: 20%;">Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($logs as $log)
-                    <tr class="border">
-                        <th class="p-2">{{ $loop->iteration }}</th>
-                        <th>
-                            @if ($log->user && $log->user->medical)
-                                {{ $log->user->medical->degree }} {{ $log->user->name }} {{ $log->user->lastname }}
-                            @else
-                                Datos médicos no disponibles
-                            @endif
-                        </th>
-                        <th>{{ $log->created_at }}</th>
-                        <th>
-                            @if ($log->status == 1)
-                                <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Invitado</span>
-                            @else
-                                <span class="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20">No invitado</span>
-                            @endif
-                        </th>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-        <br>
-        {{$logs->links()}}
-    </div>
 
-    <div>
-        <p class="pt-8 pb-4 text-xl font-bold">Lista de invitados que no asistieron</p>
-        <table class="table-auto w-full mt-4">
-            <thead class="bg-stone-100 h-12 border">
-                <tr>
-                    <th style="width: 10%;">#</th>
-                    <th style="width: 70%;">Nombre</th>
-                    <th style="width: 20%;">Status</th>
-                </tr>
-            </thead>
-            
-            <tbody class="text-center">
-                @foreach($userNoCheckin as $index => $nombre)
-                    <tr class="border">
-                        <td class="p-2">{{ $index + 1 }}</td>
-                        
-                        <td>
-                            @if ($nombre && $nombre->medical)
-                                {{$nombre->medical->degree}} {{$nombre->name}} {{ $nombre->lastname }}
-                            @else
-                                Datos médicos no disponibles
-                            @endif
-                        </td>
-                        <td>
-                            <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">No asistió / pendiente</span>
-                        </td>
+    <div class="flex">
+        <div class="w-1/2 mr-8"> 
+            <div wire:poll.1000ms="updateLogs">
+                <p class="pt-8 pb-4 text-xl font-bold">Lista de asistentes que ya realizaron checkin</p>
+                <table class="table-auto w-full mt-4" >
+                    <thead class="bg-stone-100 h-12 border">
+                        <tr >
+                            <th style="width: 10%;">#</th>
+                            <th style="width: 50%;">Nombre</th>
+                            <th style="width: 20%;">Hora de entrada</th>
+                            <th style="width: 20%;">Status</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        @foreach ($logs as $log)
+                            <tr class="border">
+                                <th class="p-2">{{ $loop->iteration }}</th>
+                                <th>
+                                    @if ($log->user && $log->user->medical)
+                                        {{ $log->user->medical->degree }} {{ $log->user->name }} {{ $log->user->lastname }}
+                                    @else
+                                        Datos médicos no disponibles
+                                    @endif
+                                </th>
+                                <th>{{ $log->created_at }}</th>
+                                <th>
+                                    @if ($log->status == 1)
+                                        <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Invitado</span>
+                                    @else
+                                        <span class="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20">No invitado</span>
+                                    @endif
+                                </th>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <br>
+                {{$logs->links()}}
+            </div>
+        </div>
+        
+        <div class="w-1/2">
+            <p class="pt-8 pb-4 text-xl font-bold">Lista de invitados que no asistieron</p>
+            <table class="table-auto w-full mt-4">
+                <thead class="bg-stone-100 h-12 border">
+                    <tr>
+                        <th style="width: 10%;">#</th>
+                        <th style="width: 70%;">Nombre</th>
+                        <th style="width: 20%;">Status</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                
+                <tbody class="text-center">
+                    @foreach($userNoCheckin as $index => $nombre)
+                        <tr class="border">
+                            <td class="p-2">{{ $index + 1 }}</td>
+                        
+                            <td>
+                                @if ($nombre && $nombre->medical)
+                                    {{$nombre->medical->degree}} {{$nombre->name}} {{ $nombre->lastname }}
+                                @else
+                                    Datos médicos no disponibles
+                                @endif
+                            </td>
+                            <td>
+                                <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">No asistió / pendiente</span>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
