@@ -45,7 +45,7 @@
             </div>
 
             <div class="flex items-center mt-20">
-                <button type="submit" class="w-full items-center px-4 py-2 border border-transparent rounded-md font-semibold text-sm text-white bg-[#0172C2] hover:bg-[#189FFF] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 text-center">
+                <button type="submit" class="w-full items-center px-4 py-2 border border-transparent rounded-md font-semibold text-sm text-white bg-pink-600 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 text-center">
                     INICIAR SESIÓN
                 </button>
             </div>

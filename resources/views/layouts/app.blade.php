@@ -15,7 +15,7 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
+<body class="bg-stone-50">
 
     <!-- Page Heading -->
   <!--   @isset($header)
@@ -27,7 +27,7 @@
     @endisset -->
 
     <!-- Page Content -->
-    <main class="bg-stone-50 w-full ">
+    <main class="w-full ">
         @yield('content')
     </main>
     @yield('scripts')
