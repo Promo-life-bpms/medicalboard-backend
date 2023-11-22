@@ -104,6 +104,7 @@ class EventController extends Controller
             'more_information' => 'required',
             //'users' => 'required'
         ]);
+
         if ($request->hasFile('img')) {
             $filenameWithExt = $request->file('img')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
@@ -112,7 +113,7 @@ class EventController extends Controller
             $path = $request->file('img')->storeAs('public/img', $fileNameToStore);
             $path = 'storage/img/' . $fileNameToStore;
         } else {
-            $path = null;
+            $path = 'storage/img/PruebaEvent.png';
         }
         
         $fechastart = Carbon::parse($request->start);
@@ -183,7 +184,9 @@ class EventController extends Controller
             $path = $request->file('img')->storeAs('public/img', $fileNameToStore);
             $path = 'storage/img/' . $fileNameToStore;
         } else {
-            $path = null;
+            $event = Event::find($request->event_id);
+            $path = $event->img; 
+
         }
         
         $fechastart = Carbon::parse($request->start);
