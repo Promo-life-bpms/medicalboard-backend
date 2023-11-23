@@ -297,7 +297,7 @@
                         
                                 <td>
                                     <div class="text-center">
-                                        {{ count(json_decode($event->invited->users)) }}
+                                        {{ count(json_decode($event->invited->users) ?? []) }}
                                     </div> 
                                 </td> 
             
