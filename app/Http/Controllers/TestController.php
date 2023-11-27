@@ -14,7 +14,7 @@ class TestController extends Controller
         foreach ($users as $user) {
             array_push($data , (object)[
                 'name' => $user->name . ' ' . $user->lastname,
-                'tagID' => '/medical/info/'. $user->medical->tag
+                'tagID' => $user->medical == null? '': $user->medical->tag
             ]);
         }
 
