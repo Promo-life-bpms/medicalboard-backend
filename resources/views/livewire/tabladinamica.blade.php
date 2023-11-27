@@ -86,11 +86,11 @@
                                 <div class= "flex">
                                     <div class="flex items-center m-4">
                                         <input id="default-radio-1" name="usuarios" type="radio" value="muestra" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="default-radio-1" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Invitar a todos los usuarios</label>
+                                        <label for="default-radio-1" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Invitar a todos los usuarios faltantes</label>
                                     </div>
                                                 
                                     <div class="flex items-center">
-                                        <input id="default-radio-2" name="usuarios" type="radio" value="muestra2" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <input checked id="default-radio-2" name="usuarios" type="radio" value="muestra2" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                         <label for="default-radio-2" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Seleccionar manualmente a los usuarios</label>
                                     </div>
                                 </div>
@@ -125,6 +125,9 @@
                                                 <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
                                                     <input name="users[]" type="checkbox" value="{{ $usuario->id }}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                     <label for="checkbox-item-{{ $usuario->id }}" class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">{{$usuario->name.' '.$usuario->lastname}}</label>
+                                                    @error('users')
+                                                        <p class="text-red-500 text-xs italic">Este campo es requerido</p>
+                                                    @enderror
                                                 </div>
                                             </li>
                                         @endforeach
