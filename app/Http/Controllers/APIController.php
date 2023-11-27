@@ -14,8 +14,8 @@ use Illuminate\Http\Request;
 class APIController extends Controller
 {
     public function checkin(Request $request)
-    {
-        $tag = $request->tag;
+    {  
+        $tag = substr($request->tag, 3); 
         $event_id = $request->eventID;
 
         $today =  Carbon::now()->toDateString();
@@ -39,7 +39,7 @@ class APIController extends Controller
 
             return response('Asistencia confirmada', 200);
         }else{
-            return response('Medico no encontrado', 404); 
+            return response('Usuario no encontrado', 404); 
         }
         
     }
