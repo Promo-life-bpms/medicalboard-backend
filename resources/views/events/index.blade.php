@@ -209,7 +209,7 @@
                                                     </div>
                                                 
                                                     <div class="flex items-center">
-                                                        <input id="default-radio-2" name="usuarios" type="radio" value="muestra2" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                        <input checked id="default-radio-2" name="usuarios" type="radio" value="muestra2" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                                         <label for="default-radio-2" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Seleccionar manualmente a los usuarios</label>
                                                     </div>
                                                 </div>
@@ -297,7 +297,7 @@
                         
                                 <td>
                                     <div class="text-center">
-                                        {{ count(json_decode($event->invited->users)) }}
+                                        {{ count(json_decode($event->invited->users) ?? []) }}
                                     </div> 
                                 </td> 
             
@@ -319,7 +319,8 @@
                                     <br>
                                     @if($event->created_by == auth()->user()->id)
                                         <div class="flex justify-center">
-                                            <button data-modal-target="static-modal" data-modal-toggle="modalEditar{{$event->id}}" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 w-1/3 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+                                            <button data-modal-target="static-modal" data-modal-toggle="modalEditar{{$event->id}}" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 w-1/3 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" type="button">
+                                                                                                                                   
                                                 Editar
                                             </button>
                                             
@@ -349,7 +350,7 @@
                                                 
                                                 <!-- Cuerpo del modal -->
                                                 <div class="p-6 space-y-6; text-center">
-                                                    <p>¿Estás seguro que deseas eliminar este evento?</p>
+                                                    <p>¿Estás seguro que deseas eliminar este evento?</p><br>
                                                     <form method="POST" action="{{ route('events.delete', ['event_id' => $event->id]) }}">
                                                         @csrf
                                                         @method('POST')
@@ -389,7 +390,7 @@
                                                             <div>
                                                                 <input type="hidden" name="event_id" value="{{ $event->id }}">
                                                                 <label for="created_by" style="display: none;">Usuario:</label><p style="display: none;">{{ $user->id }}</p>
-                                                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Titulo</label>
+                                                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Título</label>
                                                                 <input type="text" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{$event->name}}" >
                                                                 @error('name')
                                                                     <small>

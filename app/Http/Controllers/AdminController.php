@@ -26,6 +26,12 @@ class AdminController extends Controller
             'email' => 'required',
         ]);
 
+        $correos = User::all()->pluck('email')->toArray();
+
+        if(in_array($request->email, $correos)){
+            return redirect()->route('admin.index')->with('alerta', 'Ya existe un correo igual');
+        }
+
         $create_user = new User();
         $create_user->name = $request->name;
         $create_user->lastname = $request->lastname;
@@ -64,7 +70,7 @@ class AdminController extends Controller
 
     public function delete(Request $request)
     {
-        DB::table('user')->where('id',$request->user_id)->update([
+        DB::table('users')->where('id',$request->user_id)->update([
             'status' => 0,
         ]);
 

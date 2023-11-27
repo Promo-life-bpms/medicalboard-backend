@@ -104,6 +104,7 @@ class EventController extends Controller
             'more_information' => 'required',
             //'users' => 'required'
         ]);
+
         if ($request->hasFile('img')) {
             $filenameWithExt = $request->file('img')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
@@ -112,15 +113,20 @@ class EventController extends Controller
             $path = $request->file('img')->storeAs('public/img', $fileNameToStore);
             $path = 'storage/img/' . $fileNameToStore;
         } else {
-            $path = null;
+            $path = 'storage/img/PruebaEvent.png';
         }
         
+        $inicio = $request->start; // Fecha de inicio del form
+        $fechastart = Carbon::parse($inicio);
+        $fechaInicio = $fechastart->format('Y-m-d');
+
         $fechastart = Carbon::parse($request->start);
         $fechaend = Carbon::parse($request->end);
 
-        $fechaActual = now()->format('Y-m-d H:i:s');
+        $fechaActual = now()->format('Y-m-d');
     
-        if ($fechastart <= $fechaActual) {
+        if ($fechaInicio < $fechaActual)
+        {
             return redirect()->back()->with('message2', 'No puedes crear un evento en una fecha pasada');
         }
     
@@ -155,7 +161,7 @@ class EventController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('message', "Evento creada correctamente.");
+        return redirect()->back()->with('message', "Evento creado correctamente.");
         
     }
 
@@ -183,7 +189,9 @@ class EventController extends Controller
             $path = $request->file('img')->storeAs('public/img', $fileNameToStore);
             $path = 'storage/img/' . $fileNameToStore;
         } else {
-            $path = null;
+            $event = Event::find($request->event_id);
+            $path = $event->img; 
+
         }
         
         $fechastart = Carbon::parse($request->start);
@@ -244,6 +252,11 @@ class EventController extends Controller
                                     ]);
         }
         else{
+            //verificamos si la variable esra vacia//
+            if (empty($request->users)) {
+                return redirect()->back()->with('message2', 'No se proporcionaron usuarios para agregar al evento');
+            }
+
             // Obtener usuarios existentes en el evento
             $existingUsers = DB::table('event_invited')->where('event_id', $request->event_id)
                                                     ->first();
