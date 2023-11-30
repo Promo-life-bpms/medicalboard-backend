@@ -151,7 +151,7 @@
             </div>
         </a>
 
-        <a href="https://rb.saludiario.com/">
+        <a href="https://pnce.org/">
             <div class="max-w-screen-md mx-auto flex px-12 pt-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 202 175" fill="none" style="width: 33%; margin-right: 0%; z-index: 10; position: relative;">
                     <path d="M50.2262 174.533L0.534912 87.7765L50.2262 1.01968H149.639L199.34 87.7765L149.639 174.533H50.2262Z" stroke="#B1B0AF" stroke-width="4" stroke-miterlimit="10"  fill="black"/>
