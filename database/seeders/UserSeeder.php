@@ -8852,7 +8852,7 @@ class UserSeeder extends Seeder
             "tagID"=> "654bd77fd6dd2"
             ],
             [
-            "name"=> "Rolando de Jesús Rivera Sánchez",
+            "name"=> "Armando Mendoza",
             "tagID"=> "654bd77fd7e20"
             ],
             [
@@ -9182,7 +9182,7 @@ class UserSeeder extends Seeder
             "tagID"=> "655783ad48978"
             ],
             [
-            "name"=> "Adrían Varga Archundia",
+            "name"=> "Adrián Vargas Archundia",
             "tagID"=> "655783ad4a972"
             ],
             [
