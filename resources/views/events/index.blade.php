@@ -208,18 +208,22 @@
                                                 <label for="img" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Invitados</label>
                                                 <div class= "flex">
                                                     <div class="flex items-center m-4">
-                                                        <input id="default-radio-1" name="usuarios" type="radio" value="muestra" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                        <input checked id="default-radio-1" name="usuarios" type="radio" value="muestra" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                                         <label for="default-radio-1" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Invitar a todos los usuarios</label>
                                                     </div>
                                                 
                                                     <div class="flex items-center">
-                                                        <input checked id="default-radio-2" name="usuarios" type="radio" value="muestra2" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                        <input id="default-radio-2" name="usuarios" type="radio" value="muestra2" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                                         <label for="default-radio-2" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Seleccionar manualmente a los usuarios</label>
                                                     </div>
                                                 </div>
                                         
-                                                <button id="dropdownSearchButton" data-dropdown-toggle="dropdownSearch" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Usuarios<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/></svg>
+                                                <button id="dropdownSearchButton" data-dropdown-toggle="dropdownSearch" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+                                                    Seleccionar usuarios
+                                                    <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="ml-2">
+                                                        <circle cx="12" cy="12" r="10" stroke="#FFFFFF" stroke-width="1.5"/>
+                                                        <path d="M15 12L12 12M12 12L9 12M12 12L12 9M12 12L12 15" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+                                                    </svg>
                                                 </button>
 
                                                 <!-- Dropdown menu -->
@@ -320,15 +324,15 @@
                                     <div class="text-center">
                                         <a href="{{ route('events.show', ['id' => $event->id]) }}" class="bg-pink-600 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out" >Ver detalles de evento</a>
                                     </div>
-                                    <br>
+                                    
                                     @if($event->created_by == auth()->user()->id)
-                                        <div class="flex justify-center">
-                                            <button data-modal-target="static-modal" data-modal-toggle="modalEditar{{$event->id}}" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 w-1/3 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" type="button">
+                                        <div class="flex justify-center mt-4 mb-6">
+                                            <button data-modal-target="static-modal" data-modal-toggle="modalEditar{{$event->id}}" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 w-1/3 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 mr-2" type="button">
                                                                                                                                    
                                                 Editar
                                             </button>
                                             
-                                            <button data-modal-target="delete-modal{{$event->id}}" data-modal-toggle="modalDelete{{$event->id}}" class="block text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 w-1/3 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" type="button">
+                                            <button data-modal-target="delete-modal{{$event->id}}" data-modal-toggle="modalDelete{{$event->id}}" class="block text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 w-1/3 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 ml-2" type="button">
                                                 Eliminar
                                             </button>
                                         </div>
