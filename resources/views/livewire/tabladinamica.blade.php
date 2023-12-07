@@ -74,12 +74,7 @@
                                     <label for="created_by" style="display: none;">Usuario:</label><p style="display: none;">{{ $user->id }}</p>
                                 </div>
 
-                                <div>
-                                    <label for="usuarios">Usuarios ya invitados:</label>
-                                    @foreach($nombres as $index => $nombre)
-                                        <p>{{ $nombre }}</p>
-                                    @endforeach   
-                                </div>
+                                
 
                                 <label for="users">Selecciona un usuario</label>
 
@@ -95,8 +90,12 @@
                                     </div>
                                 </div>
 
-                                <button id="dropdownSearchButton" data-dropdown-toggle="dropdownSearch" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Usuarios<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/></svg>
+                                <button id="dropdownSearchButton" data-dropdown-toggle="dropdownSearch" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">  
+                                Seleccionar usuarios
+                                    <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="ml-2">
+                                        <circle cx="12" cy="12" r="10" stroke="#FFFFFF" stroke-width="1.5"/>
+                                        <path d="M15 12L12 12M12 12L9 12M12 12L12 9M12 12L12 15" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+                                    </svg>
                                 </button>
                                 
                                 <!-- Dropdown menu -->
@@ -134,6 +133,14 @@
                                     </ul>
                                 </div>
 
+
+                                <label for="usuarios">Usuarios ya invitados:</label>
+                                <div class="w-full overflow-y-auto h-32">
+                                    @foreach($nombres as $index => $nombre)
+                                        <p>{{ $nombre }}</p>
+                                    @endforeach   
+                                </div>
+
                                 <div class="text-right">
                                     <button type="submit" class="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">
                                         Agregar invitados
@@ -148,7 +155,7 @@
     </div>
 
     <div class="flex">
-        <div class="w-1/2 mr-8"> 
+        <div class="w-full mr-8"> 
             <div wire:poll.1000ms="updateLogs">
                 <p class="pt-8 pb-4 text-xl font-bold">Lista de asistentes que ya realizaron checkin</p>
                 <table class="table-auto w-full mt-4" >
@@ -189,7 +196,7 @@
             </div>
         </div>
         
-        <div class="w-1/2">
+        <!-- <div class="w-1/2">
             <p class="pt-8 pb-4 text-xl font-bold">Lista de invitados que no asistieron</p>
             <table class="table-auto w-full mt-4">
                 <thead class="bg-stone-100 h-12 border">
@@ -219,7 +226,7 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>
+        </div> -->
     </div>
 </div>
 
