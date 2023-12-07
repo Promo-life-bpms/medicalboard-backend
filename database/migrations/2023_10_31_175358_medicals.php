@@ -43,8 +43,8 @@ return new class extends Migration
             $table->string('type');
             $table->dateTime('start');
             $table->dateTime('end');
-            $table->string('url');
-            $table->string('more_information');
+            $table->string('url')->nullable();
+            $table->string('more_information')->nullable();
             $table->tinyInteger('status');
             $table->unsignedBigInteger('created_by');
             $table->foreign('created_by')->references('id')->on('users');

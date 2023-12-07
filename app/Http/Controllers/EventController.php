@@ -100,8 +100,8 @@ class EventController extends Controller
             'type' => 'required',
             'start' => 'required',
             'end' => 'required',
-            'url' => 'required',
-            'more_information' => 'required',
+           /*  'url' => 'required',
+            'more_information' => 'required', */
             //'users' => 'required'
         ]);
 
@@ -177,8 +177,8 @@ class EventController extends Controller
             'type' => 'required',
             'start' => 'required',
             'end' => 'required',
-            'url' => 'required',
-            'more_information' => 'required',
+            /* 'url' => 'required',
+            'more_information' => 'required', */
         ]);
 
         if ($request->hasFile('img')) {

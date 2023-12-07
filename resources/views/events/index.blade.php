@@ -90,8 +90,8 @@
                                             <div class="grid gap-4 mb-4 md:grid-cols-1">
                                                 <div>
                                                     <label for="created_by" style="display: none;">Usuario:</label><p style="display: none;">{{ $user->id }}</p>
-                                                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Titulo</label>
-                                                    <input type="text" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa un título">
+                                                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Titulo del evento <span class="text-red-500">*</span></label>
+                                                    <input type="text" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa el título del evento">
                                                     @error('name')
                                                         <small>
                                                             <font color="red"> *Este campo es requerido* </font>
@@ -101,8 +101,8 @@
                                                 </div>
 
                                                 <div>
-                                                    <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descripción</label>
-                                                    <textarea name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa una descripción"></textarea>
+                                                    <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descripción del evento <span class="text-red-500">*</span></label>
+                                                    <textarea name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa la descripción del evento"></textarea>
                                                     @error('description')
                                                         <small>
                                                             <font color="red"> *Este campo es requerido* </font>
@@ -112,8 +112,8 @@
                                                 </div>
 
                                                 <div>
-                                                    <label for="site" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sitio</label>
-                                                    <input type="text" name="site" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa un sitio">
+                                                    <label for="site" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sitio del evento <span class="text-red-500">*</span></label>
+                                                    <input type="text" name="site" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa el nombre del sitio donde se va a realizar el evento">
                                                     @error('site')
                                                         <small>
                                                             <font color="red"> *Este campo es requerido* </font>
@@ -123,8 +123,8 @@
                                                 </div>
 
                                                 <div>
-                                                    <label for="location" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Locación</label>
-                                                    <input type="text" name="location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa una locación">
+                                                    <label for="location" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ubicación <span class="text-red-500">*</span></label>
+                                                    <input type="text" name="location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa la dirección del evento">
                                                     @error('location')
                                                         <small>
                                                             <font color="red"> *Este campo es requerido* </font>
@@ -134,8 +134,11 @@
                                                 </div>
 
                                                 <div>
-                                                    <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo</label>
-                                                    <input type="text" name="type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa el tipo">
+                                                    <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo de evento <span class="text-red-500">*</span></label>
+                                                    <select name="type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                        <option value="presencial">Presencial</option>
+                                                        <option value="en linea">En línea</option>
+                                                    </select>
                                                     @error('type')
                                                         <small>
                                                             <font color="red"> *Este campo es requerido* </font>
@@ -146,7 +149,7 @@
 
                                                 <div style="display: flex; gap: 20px;">
                                                     <div style="flex: 1;">
-                                                        <label for="start" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Inicio</label>
+                                                        <label for="start" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora y día de inicio<span class="text-red-500">*</span></label>
                                                         <input type="datetime-local" name="start" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa el inicio de la reunión">
                                                         @error('start')
                                                             <small>
@@ -157,7 +160,7 @@
                                                     </div>
 
                                                     <div style="flex: 1;">
-                                                        <label for="end" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fin</label>
+                                                        <label for="end" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora y día de finalización<span class="text-red-500">*</span></label>
                                                         <input type="datetime-local" name="end" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa el fin de la reunión">
                                                         @error('end')
                                                             <small>
@@ -170,8 +173,8 @@
 
 
                                                 <div>
-                                                    <label for="url" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">URL</label>
-                                                    <input type="text" name="url" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa la URL">
+                                                    <label for="url" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">URL del evento (para eventos en línea)</label>
+                                                    <input type="text" name="url" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa la URL del evento">
                                                     @error('url')
                                                         <small>
                                                             <font color="red"> *Este campo es requerido* </font>
@@ -181,8 +184,8 @@
                                                 </div>
 
                                                 <div>
-                                                    <label for="more_information" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Más información</label>
-                                                    <input type="text" name="more_information" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa más información">
+                                                    <label for="more_information" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Más información del evento</label>
+                                                    <input type="text" name="more_information" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa información adicional del evento">
                                                     @error('more_information')
                                                         <small>
                                                             <font color="red"> *Este campo es requerido* </font>
@@ -201,7 +204,8 @@
                                                         <br>
                                                     @enderror
                                                 </div>
-                                                
+
+                                                <label for="img" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Invitados</label>
                                                 <div class= "flex">
                                                     <div class="flex items-center m-4">
                                                         <input id="default-radio-1" name="usuarios" type="radio" value="muestra" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
@@ -390,8 +394,8 @@
                                                             <div>
                                                                 <input type="hidden" name="event_id" value="{{ $event->id }}">
                                                                 <label for="created_by" style="display: none;">Usuario:</label><p style="display: none;">{{ $user->id }}</p>
-                                                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Título</label>
-                                                                <input type="text" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{$event->name}}" >
+                                                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Titulo del evento <span class="text-red-500">*</span></label>
+                                                                <input type="text" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{$event->name}}" placeholder="Ingresa el título del evento">
                                                                 @error('name')
                                                                     <small>
                                                                         <font color="red"> *Este campo es requerido* </font>
@@ -401,7 +405,7 @@
                                                             </div>
 
                                                             <div>
-                                                                <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descripción</label>
+                                                                <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descripción del evento<span class="text-red-500">*</span></label>
                                                                 <input type="text" name="description" value="{{$event->description}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                                 @error('description')
                                                                     <small>
@@ -412,7 +416,7 @@
                                                             </div>
 
                                                             <div>
-                                                                <label for="site" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sitio</label>
+                                                                <label for="site" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sitio del evento <span class="text-red-500">*</span></label>
                                                                 <input type="text" name="site" value="{{$event->site}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                                 @error('site')
                                                                     <small>
@@ -423,7 +427,7 @@
                                                             </div>
 
                                                             <div>
-                                                                <label for="location" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Locación</label>
+                                                                <label for="location" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ubicación <span class="text-red-500">*</span></label>
                                                                 <input type="text" name="location" value="{{$event->location}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                                 @error('location')
                                                                     <small>
@@ -434,8 +438,11 @@
                                                             </div>
 
                                                             <div>
-                                                                <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo</label>
-                                                                <input type="text" name="type" value="{{$event->type}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                                <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo de evento <span class="text-red-500">*</span></label>
+                                                                <select name="type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                                    <option value="presencial" @if(old('type', $event->type) == 'presencial') selected @endif>Presencial</option>
+                                                                    <option value="en linea" @if(old('type', $event->type) == 'en linea') selected @endif>En línea</option>
+                                                                </select>
                                                                 @error('type')
                                                                     <small>
                                                                         <font color="red"> *Este campo es requerido* </font>
@@ -446,7 +453,7 @@
 
                                                             <div style="display: flex; gap: 20px;">
                                                                 <div style="flex: 1;">
-                                                                    <label for="start" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Inicio</label>
+                                                                    <label for="start" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora y día de inicio<span class="text-red-500">*</span></label>
                                                                     <input type="datetime-local" name="start" value="{{$event->start}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                                     @error('start')
                                                                         <small>
@@ -457,7 +464,7 @@
                                                                 </div>
 
                                                                 <div style="flex: 1;">
-                                                                    <label for="end" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fin</label>
+                                                                    <label for="end" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora y día de finalización<span class="text-red-500">*</span></label>
                                                                     <input type="datetime-local" name="end" value="{{$event->end}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                                     @error('end')
                                                                         <small>
@@ -470,7 +477,7 @@
 
 
                                                             <div>
-                                                                <label for="url" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">URL</label>
+                                                                <label for="url" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">URL del evento (para eventos en línea)</label>
                                                                 <input type="text" name="url" value="{{$event->url}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                                 @error('url')
                                                                     <small>
@@ -481,7 +488,7 @@
                                                             </div>
 
                                                             <div>
-                                                                <label for="more_information" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Más información</label>
+                                                                <label for="more_information" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Más información del evento</label>
                                                                 <input type="text" name="more_information" value="{{$event->more_information}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                                 @error('more_information')
                                                                     <small>
