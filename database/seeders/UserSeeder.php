@@ -9196,6 +9196,11 @@ class UserSeeder extends Seeder
             [
             "name"=> "Patricia Sonia López Garcés",
             "tagID"=> "655783ad4f92b"
+            ],
+
+            [
+                "name"=> "María del Carmen Paredes",
+                "tagID"=> "6572315e46d90"
             ]
     
         ];

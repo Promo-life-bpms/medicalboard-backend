@@ -18,12 +18,7 @@ class TestSeeder extends Seeder
     public function run()
     {
         $names = [ 
-            'Fernando Alberto Varela Bañuelos',
-            'Karen Gomez Arredondo',
-            'Adrían Varga Archundia',
-            'Edgar Miguel Ramírez Ramírez',
-            'Juan Carlos Yahir Coutiño Guzmán',
-            'Patricia Sonia López Garcés',
+            'María del Carmen Paredes'
         ];
 
         $female_names = [
