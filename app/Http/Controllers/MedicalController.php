@@ -106,10 +106,52 @@ class MedicalController extends Controller
 
         $medical = Medical::where('tag',$id)->get()->first();
         $user = $medical->user;
-        $events_invited = EventInvited::whereRaw("JSON_CONTAINS(users, ?)", [$user->id])->get();
-        $today = Date::now()->format('Y-m-d'); 
 
-        return view('medical.medical-events', compact('user','events_invited', 'today'));
+        //FECHA ACTUAL//
+        $today = now()->format('Y-m-d');
+        $tomorrow = now()->addDay()->format('Y-m-d');
+
+        //DÍAS PASADOS//
+        $sixDays = now()->subDays(6)->format('Y-m-d');
+        //dd($sixDays);
+
+        //DÍAS FUTUROS//
+        $sixDaysLater = now()->addDays(6)->format('Y-m-d');
+        //dd($sixDaysLater);
+
+        //TRAER 30 DÍAS//
+        $DaysLater = now()->addDays(30)->format('Y-m-d');
+        
+        $past = EventInvited::whereRaw("JSON_CONTAINS(users, ?)", [$user->id])
+                                ->with('events') // Asumiendo que hay una relación llamada 'event' en el modelo EventInvited
+                                ->whereHas('events', function ($query) use ($sixDays,$today) {
+                                    $query->where('status',1)
+                                        ->whereBetween('start', [$sixDays, $today]);
+                                })->take(6)->get();
+                                       
+        $present = EventInvited::whereRaw("JSON_CONTAINS(users, ?)", [$user->id])
+                                ->with('events') // Asumiendo que hay una relación llamada 'event' en el modelo EventInvited
+                                ->whereHas('events', function ($query) use ($today, $tomorrow) {
+                                    $query->where('status',1)
+                                        ->whereBetween('start', [$today, $tomorrow]);
+                                })
+                                ->take(6)->get();  
+        
+        $future = EventInvited::whereRaw("JSON_CONTAINS(users, ?)", [$user->id])
+                                ->with('events')
+                                ->whereHas('events', function ($query) use ($today, $sixDaysLater) {
+                                    $query->where('status', 1)
+                                        ->whereBetween('start', [$today, $sixDaysLater]);
+                                })->take(6)->get();
+
+        //dd($future);
+
+        $interest = EventInvited::with('events')->whereHas('events', function($query) use ($today, $DaysLater){
+            $query->where('status', 1)->whereBetween('start', [$today, $DaysLater]);
+        })->take(6)->get();
+ 
+        //dd($interest);
+        return view('medical.medical-events', compact('user', 'future', 'today', 'past', 'present', 'interest'));
     }
 
     public function medicalEventDetail($id) {
