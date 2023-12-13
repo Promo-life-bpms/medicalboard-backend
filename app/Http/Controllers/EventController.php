@@ -108,12 +108,15 @@ class EventController extends Controller
         if ($request->hasFile('img')) {
             $filenameWithExt = $request->file('img')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            $extension = $request->file('img')->clientExtension();
-            $fileNameToStore = time() . $filename . '.' . $extension;
+            $extension = $request->file('img')->getClientOriginalExtension();
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            $path = $request->file('img')->storeAs('public/img', $fileNameToStore);
             $path = 'storage/img/' . $fileNameToStore;
+            //dd($path);
         } else {
             $path = NULL;
         }
+        
 
         $inicio = $request->start; // Fecha de inicio del form
         $fechastart = Carbon::parse($inicio);
@@ -185,11 +188,10 @@ class EventController extends Controller
             $extension = $request->file('img')->getClientOriginalExtension();
             $fileNameToStore = $filename . '_' . time() . '.' . $extension;
             $path = $request->file('img')->storeAs('public/img', $fileNameToStore);
-            $path = 'public/img/' .uniqid().$fileNameToStore;
+            $path = 'storage/img/' . $fileNameToStore;
         } else {
             $event = Event::find($request->event_id);
             $path = $event->img; 
-
         }
         
         $fechastart = Carbon::parse($request->start);

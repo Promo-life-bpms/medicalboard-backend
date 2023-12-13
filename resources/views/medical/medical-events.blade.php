@@ -86,11 +86,11 @@
                 </div>
             @endif
             
-            @if(!empty($futuro) && count($futuro) > 0)
+            @if(!empty($future) && count($future) > 0)
                 <div class="mt-10">
                     <p class="text-2xl font-bold text-white">Próximos</p>
                     <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
-                        @foreach($futuro as $invited)
+                        @foreach($future as $invited)
                             @php
                                 $eventStartDate = \Carbon\Carbon::parse($invited->events->start);
                                 $eventEndDate = \Carbon\Carbon::parse($invited->events->end);
@@ -103,7 +103,35 @@
                                             <img src="{{ asset('img/eventos.jpg') }}" alt="{{ $invited->events->name }}" class="w-full h-48 object-cover">
                                         @else
                                             <img src="{{ asset($invited->events->img)  }}" alt="{{ $invited->events->name }}" class="w-full h-48 object-cover">
-                                            dd({{ asset($invited->events->img)  }});
+                                        @endif
+                                        <div class="p-4">
+                                            <h2 class="text-xl font-semibold">{{ $invited->events->name }}</h2>
+                                        </div>
+                                    </div>
+                                </a>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+
+            @if(!empty($interest) && count($interest) > 0)
+                <div class="mt-10">
+                    <p class="text-2xl font-bold text-white">EVENTOS QUE TE PUEDEN INTERESAR</p>
+                    <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
+                        @foreach($interest as $invited)
+                            @php
+                                $eventStartDate = \Carbon\Carbon::parse($invited->events->start);
+                                $eventEndDate = \Carbon\Carbon::parse($invited->events->end);
+                            @endphp
+                        
+                            @if ($eventStartDate->format('Y-m-d') > $today && $eventEndDate->format('Y-m-d') > $today )
+                                <a href="{{ route('medical.event.detail', ['id' => $invited->events->id ])}}">
+                                    <div class="bg-stone-800 rounded-lg overflow-hidden shadow-lg text-white">
+                                        @if($invited->events->img == '' ||  $invited->events->img == null)
+                                            <img src="{{ asset('img/eventos.jpg') }}" alt="{{ $invited->events->name }}" class="w-full h-48 object-cover">
+                                        @else
+                                            <img src="{{ asset($invited->events->img)  }}" alt="{{ $invited->events->name }}" class="w-full h-48 object-cover">
                                         @endif
                                         <div class="p-4">
                                             <h2 class="text-xl font-semibold">{{ $invited->events->name }}</h2>

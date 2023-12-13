@@ -119,6 +119,9 @@ class MedicalController extends Controller
         $sixDaysLater = now()->addDays(6)->format('Y-m-d');
         //dd($sixDaysLater);
 
+        //TRAER 30 DÍAS//
+        $DaysLater = now()->addDays(30)->format('Y-m-d');
+        
         $past = EventInvited::whereRaw("JSON_CONTAINS(users, ?)", [$user->id])
                                 ->with('events') // Asumiendo que hay una relación llamada 'event' en el modelo EventInvited
                                 ->whereHas('events', function ($query) use ($sixDays,$today) {
@@ -134,14 +137,21 @@ class MedicalController extends Controller
                                 })
                                 ->take(6)->get();  
         
-        $futuro = EventInvited::whereRaw("JSON_CONTAINS(users, ?)", [$user->id])
+        $future = EventInvited::whereRaw("JSON_CONTAINS(users, ?)", [$user->id])
                                 ->with('events')
                                 ->whereHas('events', function ($query) use ($today, $sixDaysLater) {
                                     $query->where('status', 1)
                                         ->whereBetween('start', [$today, $sixDaysLater]);
                                 })->take(6)->get();
-                            
-        return view('medical.medical-events', compact('user', 'futuro', 'today', 'past', 'present'));
+
+        //dd($future);
+
+        $interest = EventInvited::with('events')->whereHas('events', function($query) use ($today, $DaysLater){
+            $query->where('status', 1)->whereBetween('start', [$today, $DaysLater]);
+        })->take(6)->get();
+ 
+        //dd($interest);
+        return view('medical.medical-events', compact('user', 'future', 'today', 'past', 'present', 'interest'));
     }
 
     public function medicalEventDetail($id) {
