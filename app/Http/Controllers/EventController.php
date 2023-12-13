@@ -90,8 +90,8 @@ class EventController extends Controller
 
     public function create(Request $request)
     {
-
         $user = auth()->user();
+
         $this->validate($request, [
             'name' => 'required',
             'description' => 'required',
@@ -112,10 +112,12 @@ class EventController extends Controller
             $fileNameToStore = $filename . '_' . time() . '.' . $extension;
             $path = $request->file('img')->storeAs('public/img', $fileNameToStore);
             $path = 'storage/img/' . $fileNameToStore;
+            //dd($path);
         } else {
-            $path = 'storage/img/PruebaEvent.png';
+            $path = NULL;
         }
         
+
         $inicio = $request->start; // Fecha de inicio del form
         $fechastart = Carbon::parse($inicio);
         $fechaInicio = $fechastart->format('Y-m-d');
@@ -145,7 +147,6 @@ class EventController extends Controller
             'created_by' => $user->id
         ]);
 
-
         if ($request->usuarios == "muestra") {
             $invitados = DB::table('users')->pluck('id');
             EventInvited::create([
@@ -155,14 +156,14 @@ class EventController extends Controller
         }
         else{
             $us = $request->users;
+            $us = array_map('intval', $us);
             EventInvited::create([
                 'users' => json_encode($us),
                 'event_id' => $event->id,            
             ]);
         }
 
-        return redirect()->back()->with('message', "Evento creado correctamente.");
-        
+        return redirect()->back()->with('message', "Evento creado correctamente.");  
     }
 
     public function edit(Request $request)
@@ -191,7 +192,6 @@ class EventController extends Controller
         } else {
             $event = Event::find($request->event_id);
             $path = $event->img; 
-
         }
         
         $fechastart = Carbon::parse($request->start);
@@ -265,7 +265,8 @@ class EventController extends Controller
 
             // Obtener los nuevos usuarios proporcionados en $request->user
             $newUserIds = is_array($request->users) ? $request->users : json_decode($request->users, true);
-
+            $newUserIds = array_map('intval', $newUserIds);
+            
             // Combinar los usuarios existentes y nuevos
             $combinedUserIds = array_unique(array_merge($existingUserIds, $newUserIds));
 

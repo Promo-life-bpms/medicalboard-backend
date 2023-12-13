@@ -529,6 +529,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                <br>
                 {{ $events->links() }}
             </div>
         </div>
