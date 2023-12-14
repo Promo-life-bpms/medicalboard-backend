@@ -142,6 +142,7 @@ class MedicalController extends Controller
                                     $query->where('status', 1)
                                         ->whereBetween('start', [$today, $sixDaysLater]);
                                 })->take(6)->get();
+        //dd($future);
 
         //dd($future);
 

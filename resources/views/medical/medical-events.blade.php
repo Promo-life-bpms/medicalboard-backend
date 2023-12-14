@@ -23,7 +23,7 @@
     </div>
 
     <div class="px-20">
-        @if((empty($past) || count($past) === 0) && (empty($present) || count($present) === 0) && (empty($futuro) || count($futuro) === 0))
+        @if((empty($past) || count($past) === 0) && (empty($present) || count($present) === 0) && (empty($future) || count($future) === 0) && (empty($interest) || count($interest) === 0))
             <p class="text-white">No tienes eventos disponibles</p>
 
         @else
