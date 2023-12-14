@@ -128,7 +128,7 @@ class MedicalController extends Controller
                         $query->where('status', 1)->whereBetween('start', [$sixDays, $today]);
                     })->take(6)->get();
                                
-        $present = EventInvited::whereRaw("JSON_CONTAINS(users, ?)", [$user->id])
+        $present = EventInvited::whereRaw("JSON_CONTAINS(users, ?)", [json_encode($user->id)])
                                 ->with('events') // Asumiendo que hay una relación llamada 'event' en el modelo EventInvited
                                 ->whereHas('events', function ($query) use ($today, $tomorrow) {
                                     $query->where('status',1)
@@ -136,7 +136,7 @@ class MedicalController extends Controller
                                 })
                                 ->take(6)->get();  
         
-        $future = EventInvited::whereRaw("JSON_CONTAINS(users, ?)", [$user->id])
+        $future = EventInvited::whereRaw("JSON_CONTAINS(users, ?)", [json_encode($user->id)])
                                 ->with('events')
                                 ->whereHas('events', function ($query) use ($today, $sixDaysLater) {
                                     $query->where('status', 1)
