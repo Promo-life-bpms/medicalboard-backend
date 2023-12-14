@@ -122,12 +122,13 @@ class MedicalController extends Controller
         //TRAER 30 DÍAS//
         $DaysLater = now()->addDays(30)->format('Y-m-d');
         
-        $past = EventInvited::whereRaw("JSON_CONTAINS(users, ?)", [$user->id])
-                                ->with('events') // Asumiendo que hay una relación llamada 'event' en el modelo EventInvited
-                                ->whereHas('events', function ($query) use ($sixDays,$today) {
-                                    $query->where('status',1)
-                                        ->whereBetween('start', [$sixDays, $today]);
-                                })->take(6)->get();
+        $past = EventInvited::whereRaw("JSON_CONTAINS(users, ?)", [json_encode($user->id)])
+                            ->with('events') // Assuming there's a relationship named 'events' in the EventInvited model
+                            ->whereHas('events', function ($query) use ($sixDays, $today) {
+                        $query->where('status', 1)->whereBetween('start', [$sixDays, $today]);
+                    })->take(6)->get();
+
+        dd($past);
                                        
         $present = EventInvited::whereRaw("JSON_CONTAINS(users, ?)", [$user->id])
                                 ->with('events') // Asumiendo que hay una relación llamada 'event' en el modelo EventInvited
