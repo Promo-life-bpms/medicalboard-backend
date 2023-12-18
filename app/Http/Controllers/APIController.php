@@ -15,7 +15,11 @@ class APIController extends Controller
 {
     public function checkin(Request $request)
     {  
-        $tag = substr($request->tag, 3); 
+        $tag = $request->tag; 
+        if (substr($tag, 0, 2) === 'en' || substr($tag, 0, 2) === 'es') {
+            $tag = substr($tag, 2);
+        }
+        
         $event_id = $request->eventID;
 
         $today =  Carbon::now()->toDateString();
