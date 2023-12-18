@@ -60,7 +60,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 202 175" fill="none" style="width: 33%; margin-right: 0%; z-index: 10; position: relative;">
                     <path d="M50.2262 174.533L0.534912 87.7765L50.2262 1.01968H149.639L199.34 87.7765L149.639 174.533H50.2262Z" stroke="white" stroke-width="4" stroke-miterlimit="10"  fill="black"/>
                     <!-- Calcula la posición x para centrar la imagen -->
-                    <image href="{{ asset('/img/medical-logo.png')}}" alt="derecha" width="160" height="160 " x="15" y="10" transform="translate(-50%)" />
+                    <image href="{{ asset('/img/LOGO_ENFASHOP.png')}}" alt="derecha" width="160" height="160 " x="15" y="10" transform="translate(-50%)" />
                 
                 </svg>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 610 175" fill="none" style="width: 100%; z-index:4; margin-left: -15%;" class="-ml-40" >
@@ -76,7 +76,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 202 175" fill="none" style="width: 33%; margin-right: 0%; z-index: 10; position: relative;">
                     <path d="M50.2262 174.533L0.534912 87.7765L50.2262 1.01968H149.639L199.34 87.7765L149.639 174.533H50.2262Z" stroke="#B1B0AF" stroke-width="4" stroke-miterlimit="10"  fill="black"/>
                     <!-- Calcula la posición x para centrar la imagen -->
-                    <image href="{{ asset('/img/medical-logo.png')}}" alt="derecha" width="160" height="160 " x="15" y="10" transform="translate(-50%)" />
+                    <image href="{{ asset('/img/LOGO_SALUDIARIO.png')}}" alt="derecha" width="160" height="160 " x="15" y="10" transform="translate(-50%)" />
                 
                 </svg>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 610 175" fill="none" style="width: 100%; z-index:4; margin-left: -15%;" class="-ml-40" >
@@ -91,7 +91,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 202 175" fill="none" style="width: 33%; margin-right: 0%; z-index: 10; position: relative;">
                     <path d="M50.2262 174.533L0.534912 87.7765L50.2262 1.01968H149.639L199.34 87.7765L149.639 174.533H50.2262Z" stroke="#878584" stroke-width="4" stroke-miterlimit="10"  fill="black"/>
                     <!-- Calcula la posición x para centrar la imagen -->
-                    <image href="{{ asset('/img/medical-logo.png')}}" alt="derecha" width="160" height="160 " x="15" y="10" transform="translate(-50%)" />
+                    <image href="{{ asset('/img/LOGO_MPEDIATRIA.png')}}" alt="derecha" width="160" height="160 " x="15" y="10" transform="translate(-50%)" />
                 
                 </svg>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 610 175" fill="none" style="width: 100%; z-index:4; margin-left: -15%;" class="-ml-40" >
@@ -107,7 +107,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 202 175" fill="none" style="width: 33%; margin-right: 0%; z-index: 10; position: relative;">
                     <path d="M50.2262 174.533L0.534912 87.7765L50.2262 1.01968H149.639L199.34 87.7765L149.639 174.533H50.2262Z" stroke="white" stroke-width="4" stroke-miterlimit="10"  fill="black"/>
                     <!-- Calcula la posición x para centrar la imagen -->
-                    <image href="{{ asset('/img/medical-logo.png')}}" alt="derecha" width="160" height="160 " x="15" y="10" transform="translate(-50%)" />
+                    <image href="{{ asset('/img/LOGO_MEDSCAPE.png')}}" alt="derecha" width="100" height="100 " x="50" y="40" transform="translate(-50%)" />
                 
                 </svg>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 610 175" fill="none" style="width: 100%; z-index:4; margin-left: -15%;" class="-ml-40" >
@@ -122,7 +122,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 202 175" fill="none" style="width: 33%; margin-right: 0%; z-index: 10; position: relative;">
                     <path d="M50.2262 174.533L0.534912 87.7765L50.2262 1.01968H149.639L199.34 87.7765L149.639 174.533H50.2262Z" stroke="#B1B0AF" stroke-width="4" stroke-miterlimit="10"  fill="black"/>
                     <!-- Calcula la posición x para centrar la imagen -->
-                    <image href="{{ asset('/img/medical-logo.png')}}" alt="derecha" width="160" height="160 " x="15" y="10" transform="translate(-50%)" />
+                    <image href="{{ asset('/img/LOGO_PEDIATRIC_NUTRITION.png')}}" alt="derecha" width="160" height="160 " x="15" y="10" transform="translate(-50%)" />
                 
                 </svg>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 610 175" fill="none" style="width: 100%; z-index:4; margin-left: -15%;" class="-ml-40" >
