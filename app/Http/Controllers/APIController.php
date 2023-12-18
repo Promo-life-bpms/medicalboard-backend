@@ -15,16 +15,13 @@ class APIController extends Controller
 {
     public function checkin(Request $request)
     {  
-        $tag = $request->tag; 
-        if (substr($tag, 0, 2) === 'en' || substr($tag, 0, 2) === 'es') {
-            $tag = substr($tag, 2);
-        }
-        
+        $tag = substr($request->tag, 3); 
+
         $event_id = $request->eventID;
 
         $today =  Carbon::now()->toDateString();
         $find_medical = Medical::where('tag', $tag)->get()->first();
-       
+
         if($find_medical !=null || $find_medical != '' ){
            
             $event_invited = EventInvited::where('event_id', $event_id)->get()->last();
