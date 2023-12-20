@@ -50,6 +50,7 @@ class APIController extends Controller
         $today = now();
         $events = Event::whereMonth('start', $today->month)
             ->whereMonth('end', $today->month)
+            ->where('status',1)
             ->get();
 
 
