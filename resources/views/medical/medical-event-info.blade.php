@@ -63,9 +63,7 @@
         <p class="text-xl font-bold mb-8 mt-10">Recursos del evento</p>
         <div class="bg-stone-800 p-5 rounded-lg ">
 
-            
-            <a href="{{ parse_url($event->url, PHP_URL_HOST) }}" target="_blank">
-
+            <a href="{{ $event->url}}" target="__blank">
                 <div class="flex justify-between">
                     
                         <p>Obtener liga de evento</p>
