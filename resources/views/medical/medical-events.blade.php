@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Eventos')
+@section('title', 'Congresos')
 
 
 @section('content')
@@ -18,13 +18,13 @@
                     <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </a>
-            <h1 class="text-3xl font-bold text-white">Eventos</h1>
+            <h1 class="text-3xl font-bold text-white">Congresos</h1>
         </div>
     </div>
 
     <div class="px-20">
         @if((empty($past) || count($past) === 0) && (empty($present) || count($present) === 0) && (empty($future) || count($future) === 0) && (empty($interest) || count($interest) === 0))
-            <p class="text-white">No tienes eventos disponibles</p>
+            <p class="text-white">No tienes congresos disponibles</p>
 
         @else
             @if(!empty($past) && count($past) > 0)
@@ -117,7 +117,7 @@
 
             @if(!empty($interest) && count($interest) > 0)
                 <div class="mt-10">
-                    <p class="text-2xl font-bold text-white">EVENTOS QUE TE PUEDEN INTERESAR</p>
+                    <p class="text-2xl font-bold text-white">Congresos que te pueden interesar</p>
                     <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
                         @foreach($interest as $invited)
                             @php

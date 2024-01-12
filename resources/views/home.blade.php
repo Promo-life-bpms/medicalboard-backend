@@ -15,7 +15,7 @@
             <a href="{{ route('events.index') }}" class="max-w-xs rounded overflow-hidden shadow-lg rounded-lg transition-transform hover:scale-105 cursor-pointer">
                 <img class="w-full object-cover" src="{{ asset('/img/eventos.jpg')}}" alt="Imagen 1" style="height: 200px;">
                 <div class="px-6 py-4">
-                    <div class="font-bold text-xl mb-2">Eventos</div>
+                    <div class="font-bold text-xl mb-2">Congresos</div>
                 </div>
             </a>
 
