@@ -65,7 +65,7 @@
                 </svg>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 610 175" fill="none" style="width: 100%; z-index:4; margin-left: -15%;" class="-ml-40" >
                     <path d="M0.0405273 0L50.3732 87.7765L0.679616 174.802H533.544L610 87.4008L533.544 0H0.0405273Z" fill="#B1B0AF"/>
-                    <text x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" fill="black" font-size="36" font-family="Arial" style="font-weight: bold">ENFASHOP</text>
+                    <text x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" fill="black" font-size="36" font-family="Arial" style="font-weight: bold">ENFASHOP MED</text>
                 </svg>
             </div>
         </a>
