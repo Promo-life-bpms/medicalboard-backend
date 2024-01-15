@@ -121,7 +121,7 @@
             </div>
         </a>
 
-        <a href="https://espanol.medscape.com/">
+        {{-- <a href="https://espanol.medscape.com/">
             <div class="max-w-screen-md mx-auto flex px-12 pt-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 202 175" fill="none" style="width: 33%; margin-right: 0%; z-index: 10; position: relative;">
                     <path d="M50.2262 174.533L0.534912 87.7765L50.2262 1.01968H149.639L199.34 87.7765L149.639 174.533H50.2262Z" stroke="#878584" stroke-width="4" stroke-miterlimit="10"  fill="black"/>
@@ -134,18 +134,18 @@
                     <text x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" fill="black" font-size="36" font-family="Arial" style="font-weight: bold">MEDSCAPE</text>
                 </svg>
             </div>
-        </a>
+        </a> --}}
 
         <a href="https://pnce.org/">
             <div class="max-w-screen-md mx-auto flex px-12 pt-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 202 175" fill="none" style="width: 33%; margin-right: 0%; z-index: 10; position: relative;">
-                    <path d="M50.2262 174.533L0.534912 87.7765L50.2262 1.01968H149.639L199.34 87.7765L149.639 174.533H50.2262Z" stroke="#FDFDFD" stroke-width="4" stroke-miterlimit="10"  fill="black"/>
+                    <path d="M50.2262 174.533L0.534912 87.7765L50.2262 1.01968H149.639L199.34 87.7765L149.639 174.533H50.2262Z" stroke="#878584" stroke-width="4" stroke-miterlimit="10"  fill="black"/>
                     <!-- Calcula la posición x para centrar la imagen -->
                     <image href="{{ asset('/img/LOGO_PEDIATRIC_NUTRITION.png')}}" alt="derecha" width="160" height="160 " x="15" y="10" transform="translate(-50%)" />
                 
                 </svg>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 610 175" fill="none" style="width: 100%; z-index:4; margin-left: -15%;" class="-ml-40" >
-                    <path d="M0.0405273 0L50.3732 87.7765L0.679616 174.802H533.544L610 87.4008L533.544 0H0.0405273Z" fill="#FDFDFD"/>
+                    <path d="M0.0405273 0L50.3732 87.7765L0.679616 174.802H533.544L610 87.4008L533.544 0H0.0405273Z" fill="#878584"/>
                     <text x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" fill="black" font-size="36" font-family="Arial" style="font-weight: bold">PEDIATRIC NUTRITION</text>
                 </svg>
             </div>
@@ -154,13 +154,13 @@
         <a href="{{route('medical.info', ['id' =>  $user->medical->tag] )}}">
             <div class="max-w-screen-md mx-auto flex px-12 pt-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 202 175" fill="none" style="width: 33%; margin-right: 0%; z-index: 10; position: relative;">
-                    <path d="M50.2262 174.533L0.534912 87.7765L50.2262 1.01968H149.639L199.34 87.7765L149.639 174.533H50.2262Z" stroke="#B1B0AF" stroke-width="4" stroke-miterlimit="10"  fill="black"/>
+                    <path d="M50.2262 174.533L0.534912 87.7765L50.2262 1.01968H149.639L199.34 87.7765L149.639 174.533H50.2262Z" stroke="#FDFDFD" stroke-width="4" stroke-miterlimit="10"  fill="black"/>
                     <!-- Calcula la posición x para centrar la imagen -->
                     <image href="{{ asset('/img/medical-logo.png')}}" alt="derecha" width="160" height="160 " x="15" y="10" transform="translate(-50%)" />
                 
                 </svg>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 610 175" fill="none" style="width: 100%; z-index:4; margin-left: -15%;" class="-ml-40" >
-                    <path d="M0.0405273 0L50.3732 87.7765L0.679616 174.802H533.544L610 87.4008L533.544 0H0.0405273Z" fill="#B1B0AF"/>
+                    <path d="M0.0405273 0L50.3732 87.7765L0.679616 174.802H533.544L610 87.4008L533.544 0H0.0405273Z" fill="#FDFDFD"/>
                     
                     <text x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" fill="black" font-size="36" font-family="Arial" style="font-weight: bold">MI INFORMACIÓN</text>
                 </svg>
@@ -170,13 +170,13 @@
         <a href="{{ route('medical.events', ['id' => $user->medical->tag ])}}">
             <div class="max-w-screen-md mx-auto flex px-12 pt-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 202 175" fill="none" style="width: 33%; margin-right: 0%; z-index: 10; position: relative;">
-                    <path d="M50.2262 174.533L0.534912 87.7765L50.2262 1.01968H149.639L199.34 87.7765L149.639 174.533H50.2262Z" stroke="#878584" stroke-width="4" stroke-miterlimit="10"  fill="black"/>
+                    <path d="M50.2262 174.533L0.534912 87.7765L50.2262 1.01968H149.639L199.34 87.7765L149.639 174.533H50.2262Z" stroke="#B1B0AF" stroke-width="4" stroke-miterlimit="10"  fill="black"/>
                     <!-- Calcula la posición x para centrar la imagen -->
                     <image href="{{ asset('/img/medical-logo.png')}}" alt="derecha" width="160" height="160 " x="15" y="10" transform="translate(-50%)" />
                 
                 </svg>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 610 175" fill="none" style="width: 100%; z-index:4; margin-left: -15%;" class="-ml-40" >
-                    <path d="M0.0405273 0L50.3732 87.7765L0.679616 174.802H533.544L610 87.4008L533.544 0H0.0405273Z" fill="#878584"/>
+                    <path d="M0.0405273 0L50.3732 87.7765L0.679616 174.802H533.544L610 87.4008L533.544 0H0.0405273Z" fill="#B1B0AF"/>
                     
                     <text x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" fill="black" font-size="30" font-family="Arial" style="font-weight: bold">CONGRESOS</text>
                 </svg>
