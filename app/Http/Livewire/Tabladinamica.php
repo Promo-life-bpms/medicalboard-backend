@@ -92,10 +92,8 @@ class Tabladinamica extends Component
 
     public function updateLogs()
     {
-        $this->loadData(); // Llama a la lógica de carga de datos
-        $this->emit('logsUpdated'); // Emite el evento de logs actualizados
-
-       
+        $this->loadData(); 
+        $this->emit('logsUpdated'); 
         
     }
 }
