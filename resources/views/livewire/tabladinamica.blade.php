@@ -155,7 +155,7 @@
     </div>
 
     <div class="flex">
-        <div class="w-full mr-8"> 
+        <div class="w-full mr-8" wire:ignore> 
             <div wire:poll.50ms="updateLogs">
                 <p class="pt-8 pb-4 text-xl font-bold">Lista de asistentes que ya realizaron checkin</p>
                 <table class="table-auto w-full mt-4" >
