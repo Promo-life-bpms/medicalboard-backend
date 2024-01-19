@@ -91,7 +91,7 @@
                                                 <div>
                                                     <label for="created_by" style="display: none;">Usuario:</label><p style="display: none;">{{ $user->id }}</p>
                                                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Titulo del evento <span class="text-red-500">*</span></label>
-                                                    <input type="text" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa el título del evento">
+                                                    <input required type="text" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa el título del evento">
                                                     @error('name')
                                                         <small>
                                                             <font color="red"> *Este campo es requerido* </font>
@@ -102,7 +102,7 @@
 
                                                 <div>
                                                     <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descripción del evento <span class="text-red-500">*</span></label>
-                                                    <textarea name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa la descripción del evento"></textarea>
+                                                    <textarea required name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa la descripción del evento"></textarea>
                                                     @error('description')
                                                         <small>
                                                             <font color="red"> *Este campo es requerido* </font>
@@ -113,7 +113,7 @@
 
                                                 <div>
                                                     <label for="site" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sitio del evento <span class="text-red-500">*</span></label>
-                                                    <input type="text" name="site" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa el nombre del sitio donde se va a realizar el evento">
+                                                    <input required type="text" name="site" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa el nombre del sitio donde se va a realizar el evento">
                                                     @error('site')
                                                         <small>
                                                             <font color="red"> *Este campo es requerido* </font>
@@ -124,7 +124,7 @@
 
                                                 <div>
                                                     <label for="location" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ubicación <span class="text-red-500">*</span></label>
-                                                    <input type="text" name="location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa la dirección del evento">
+                                                    <input required type="text" name="location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa la dirección del evento">
                                                     @error('location')
                                                         <small>
                                                             <font color="red"> *Este campo es requerido* </font>
@@ -150,7 +150,7 @@
                                                 <div style="display: flex; gap: 20px;">
                                                     <div style="flex: 1;">
                                                         <label for="start" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora y día de inicio<span class="text-red-500">*</span></label>
-                                                        <input type="datetime-local" name="start" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa el inicio de la reunión">
+                                                        <input required type="datetime-local" name="start" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa el inicio de la reunión">
                                                         @error('start')
                                                             <small>
                                                                 <font color="red"> *Este campo es requerido* </font>
@@ -161,7 +161,7 @@
 
                                                     <div style="flex: 1;">
                                                         <label for="end" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora y día de finalización<span class="text-red-500">*</span></label>
-                                                        <input type="datetime-local" name="end" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa el fin de la reunión">
+                                                        <input required type="datetime-local" name="end" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingresa el fin de la reunión">
                                                         @error('end')
                                                             <small>
                                                                 <font color="red"> *Este campo es requerido* </font>
