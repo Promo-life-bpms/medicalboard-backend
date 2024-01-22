@@ -41,9 +41,19 @@ class APIController extends Controller
                     $create_event_log->status = in_array($find_medical->user->id, $decoded_users)? 1: 0;
                     $create_event_log->save();
                 }
+
+                return response('Asistencia confirmada', 200);
             }
 
-            return response('Asistencia confirmada', 200);
+            $data = [];
+
+            array_push($data, (object)[
+                'name' => $find_medical->user->name,
+                'idapi' => $find_medical->user->medical->idapi,
+            ]);
+
+            return response($data, 200);
+            
         }else{
             return response('Usuario no encontrado', 404); 
         }
