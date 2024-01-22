@@ -28,8 +28,8 @@ class APIController extends Controller
             $decoded_users = json_decode($event_invited->users, true);
     
             //1 ok , 0 no invitado
-            $check_medical_log = EventLog::where('event_id', $event_id)->where('user_id', $find_medical->user->id)->get()->first();
-
+            $check_medical_log = EventLog::where('event_id', $event_id)->where('user_id', $find_medical->user->id)->get();
+            if(count($check_medical_log) ==2)
             if($check_medical_log ==null){
                 $create_event_log = new EventLog();
                 $create_event_log->event_id = $event_id;
