@@ -67,7 +67,6 @@
                                 $eventEndDate = \Carbon\Carbon::parse($invited->events->end);
                             @endphp
                             
-                            @if ($eventStartDate->format('Y-m-d') <= $today && $eventEndDate->format('Y-m-d') <= $today )
                                 <a href="{{ route('medical.event.detail', ['id' => $invited->events->id ])}}">
                                     <div class="bg-stone-800 rounded-lg overflow-hidden shadow-lg text-white">
                                         @if($invited->events->img == '' ||  $invited->events->img == null)
@@ -80,7 +79,7 @@
                                         </div>
                                     </div>
                                 </a>
-                            @endif
+                            
                         @endforeach
                     </div>
                 </div>
@@ -125,7 +124,6 @@
                                 $eventEndDate = \Carbon\Carbon::parse($invited->events->end);
                             @endphp
                         
-                            @if ($eventStartDate->format('Y-m-d') > $today && $eventEndDate->format('Y-m-d') > $today )
                                 <a href="{{ route('medical.event.detail', ['id' => $invited->events->id ])}}">
                                     <div class="bg-stone-800 rounded-lg overflow-hidden shadow-lg text-white">
                                         @if($invited->events->img == '' ||  $invited->events->img == null)
@@ -138,8 +136,7 @@
                                         </div>
                                     </div>
                                 </a>
-                            @endif
-                        @endforeach
+                            @endforeach
                     </div>
                 </div>
             @endif
