@@ -38,74 +38,7 @@ class EventController extends Controller
     {
         $event = Event::findOrFail($id); 
 
-        //Total de invitados
-        $users_invited = User::whereIn('id', json_decode($event->invited->users))->get();
-
-        //Todos los usuarios del evento
-        $users_array = collect(json_decode($event->invited->users)); 
-
-        $user_checkin = [];
-        $user_no_checkin = [];
-        
-        //Usuarios que hicieron checkin y fueron invitados
-        $users_logs = EventLog::where('event_id', $event->id)
-        ->whereIn('status', [1, 2])
-        ->distinct()
-        ->pluck('user_id')
-        ->toArray();
-      
-        //Usuarios que hicieron checkin y no fueron invitados
-        $users_no_invited = EventLog::where('event_id', $event->id)
-        ->whereIn('status', [0, 3])
-        ->distinct('user_id')
-        ->get();
-
-      
-        /* $users_logs_collection = collect($users_logs); */
-
-     /*    foreach ($users_invited as $user) {
-
-            if ($users_logs_collection->contains($user->id)) {
-                array_push($user_checkin, $user);
-            } else {
-                array_push($user_no_checkin, $user);
-            }
-        }
-
-      
-        $user = auth()->user();
-        $usuarios = User::all();
-    
-        $existingUserIds = DB::table('event_invited')
-                            ->where('event_id', $id)
-                            ->pluck('users')
-                            ->flatMap(function ($users) {
-                                return json_decode($users);
-                            })->toArray();
-    
-        $names = [];
-        foreach ($existingUserIds as $userId) {
-            $user = DB::table('users')->where('id', $userId)->first();
-            if ($user) {
-                $names[] = $user->name.' '. $user->lastname;
-            }
-        }
-        $nombres = implode(",", $names);
-
-        $usuariosFiltrados = $usuarios->reject(function($usuario) use ($existingUserIds) {
-            return in_array($usuario->id, $existingUserIds);
-        });
-        
-        $logs = $event->logs()->paginate(10); 
- */
-
-        $total_invited = count($users_array);
-        $total_asist = count($users_logs) + count($users_no_invited);
-        $total_no_asist = count($users_invited) - count($users_logs);
-        $total_no_invited = count( $users_no_invited);
-
-           
-        return view('events.show', compact('total_invited', 'total_asist', 'total_no_asist','total_no_invited', 'event'));
+        return view('events.show', compact('event'));
     }
 
     public function create(Request $request)
