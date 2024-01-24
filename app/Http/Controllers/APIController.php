@@ -40,14 +40,13 @@ class APIController extends Controller
                 $create_event_log->status = in_array($find_medical->user->id, $decoded_users)? 2: 3;
                 $create_event_log->save();
                 
-            }else{
-                if(count($check_medical_log) ==0 ){
-                    $create_event_log = new EventLog();
-                    $create_event_log->event_id = $event_id;
-                    $create_event_log->user_id = $find_medical->user->id;
-                    $create_event_log->status = in_array($find_medical->user->id, $decoded_users)? 1: 0;
-                    $create_event_log->save();
-                }
+            }elseif(count($check_medical_log) ==0 ){
+                
+                $create_event_log = new EventLog();
+                $create_event_log->event_id = $event_id;
+                $create_event_log->user_id = $find_medical->user->id;
+                $create_event_log->status = in_array($find_medical->user->id, $decoded_users)? 1: 0;
+                $create_event_log->save();
             }
 
             $data = [];
