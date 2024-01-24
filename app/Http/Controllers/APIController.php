@@ -9,7 +9,7 @@ use App\Models\User;
 use App\Models\Medical;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 
 class APIController extends Controller
 {
@@ -27,10 +27,21 @@ class APIController extends Controller
             $event_invited = EventInvited::where('event_id', $event_id)->get()->last();
             $decoded_users = json_decode($event_invited->users, true);
     
-            //1 ok , 0 no invitado
-            $check_medical_log = EventLog::where('event_id', $event_id)->where('user_id', $find_medical->user->id)->get()->first();
+            //1 ok , 0 no invitado, 2 ok doble invitado, 3 no invitado doble asistencia
+            $check_medical_log = EventLog::where('event_id', $event_id)->where('user_id', $find_medical->user->id)->get();
+            if(count($check_medical_log) >=1 ){
+                DB::table('event_logs')->where('user_id', $find_medical->user->id)->update([
+                    'status' => 2,
+                ]);
 
-            if($check_medical_log ==null){
+                $create_event_log = new EventLog();
+                $create_event_log->event_id = $event_id;
+                $create_event_log->user_id = $find_medical->user->id;
+                $create_event_log->status = in_array($find_medical->user->id, $decoded_users)? 2: 3;
+                $create_event_log->save();
+                
+            }elseif(count($check_medical_log) ==0 ){
+                
                 $create_event_log = new EventLog();
                 $create_event_log->event_id = $event_id;
                 $create_event_log->user_id = $find_medical->user->id;
@@ -38,8 +49,25 @@ class APIController extends Controller
                 $create_event_log->save();
             }
 
-            return response('Asistencia confirmada', 200);
+            $data = [];
+
+            array_push($data, (object)[
+                'name' => $find_medical->user->name,
+                'idapi' => $find_medical->user->medical->idapi,
+            ]);
+
+            return response($data, 200);
+            
         }else{
+
+            $data = [];
+
+            array_push($data, (object)[
+                'name' => 'no encontrado',
+                'idapi' => 'null',
+            ]);
+
+
             return response('Usuario no encontrado', 404); 
         }
         
