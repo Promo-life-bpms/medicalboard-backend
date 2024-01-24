@@ -95,15 +95,10 @@
             </div>
         </div>
         
-        <div class="mt-5"></div>
-        @livewire('tabladinamica', ['id' => $event->id])
-      {{--   <div class="pagination-container text-right mt-10">
-            {{ $logs->links() }}
-        </div>  --}}
+        
 
-        {{-- <div class="pagination-container text-right mt-10">
-            {{ $logs->links() }}
-        </div> --}}
+        @livewire('tabladinamica', ['id' => $event->id])
+
     </div>
 
     <div class="mt-40"></div>
