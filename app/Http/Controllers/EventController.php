@@ -299,6 +299,9 @@ class EventController extends Controller
         $users_no_invited = User::whereIn('id',$event_users_no_invited)->get();
         $event_users_doule_check = EventLog::where('event_id', $event->id)->where('status',2)->get()->pluck('user_id');
         $users_doule_check= User::whereIn('id',$event_users_doule_check)->get();
+
+        $event_users_doule_check_no_invited = EventLog::where('event_id', $event->id)->where('status',3)->get()->pluck('user_id');
+        $users_doule_check_no_invited = User::whereIn('id',$event_users_doule_check)->get();
         /* $all_users = $users_invited->merge($users_no_invited); */
         
         $users_logs_collection = collect($users_logs);
@@ -424,6 +427,16 @@ class EventController extends Controller
             $sheet->setCellValue('D'. $page2_contador, $event->name);
             $sheet->setCellValue('E'. $page2_contador, 'No asistió');
             
+        }
+
+        foreach($users_doule_check_no_invited as $user_doule_check_no_invited){
+            $contador_col =  $contador_col + 1;
+            $sheet->setCellValue('A'. $contador_col, $user_doule_check_no_invited->medical->idapi);
+            $sheet->setCellValue('B'. $contador_col, $user_doule_check_no_invited->name);
+            $sheet->setCellValue('C'. $contador_col, $user_doule_check_no_invited->lastname);
+            $sheet->setCellValue('D'. $contador_col, $event->name);
+            $sheet->setCellValue('E'. $contador_col, 'Doble asistencia');
+            $sheet->setCellValue('F'. $contador_col, $user_doule_check_no_invited->created_at);
         }
 
         header('Content-Disposition: attachment;filename="' . $event->name . '.xls');
