@@ -1,41 +1,4 @@
 <div>
-    {{-- Because she competes with no one, no one can compete with her. --}}
-
-   
-
-    <div class="flex space-x-4 p-4">
-        <div class="bg-white rounded-lg shadow-md p-4 h-28 w-1/6">
-            <h2 class="text-lg font-semibold text-center">Total invitados</h2>
-            <p class="text-5xl text-center" style="color:#0061a9;">{{count(json_decode($event->invited->users))}}</p>
-        </div>
-        
-        <div class="bg-white rounded-lg shadow-md p-4 w-1/6">
-            <h2 class="text-lg font-semibold text-center">Asistieron</h2>
-            @if($userCheckin)
-                <p class="text-5xl text-center" style="color:#009975;">{{ count($userCheckin)}}</p>
-            @else
-                <p class="text-5xl text-center" style="color:#009975;">0</p>
-            @endif
-        </div>
-        <div class="bg-white rounded-lg shadow-md p-4 w-1/6">
-            <h2 class="text-lg font-semibold text-center">No Asistieron</h2>
-            @if($userNoCheckin)
-                <p class="text-5xl text-center" style="color:#cd3349;">{{ count($userNoCheckin)}}</p>
-            @else
-                <p class="text-5xl text-center" style="color:#cd3349;">0</p>
-            @endif
-        </div>
-        
-        <div class="bg-white rounded-lg shadow-md p-4 w-1/6">
-            <h2 class="text-lg font-semibold text-center">No invitados</h2>
-            @if($usersNoInvited)
-                <p class="text-5xl text-center" style="color:#eab756;">{{ count($usersNoInvited) }}</p>
-            @else
-                <p class="text-5xl text-center" style="color:#eab756;">0</p>
-            @endif
-        </div>
-    </div>
-
 
     <div class="flex justify-between">
         <p class="pt-4  text-xl font-bold ">Información de asistencia</p>

@@ -96,14 +96,29 @@
         </div>
         
         <div class="mt-5"></div>
-        @livewire('tabladinamica', ['id' => $event->id])
-      {{--   <div class="pagination-container text-right mt-10">
-            {{ $logs->links() }}
-        </div>  --}}
+            <div class="flex space-x-4 p-4">
+                <div class="bg-white rounded-lg shadow-md p-4 h-28 w-1/6">
+                    <h2 class="text-lg font-semibold text-center">Total invitados</h2>
+                    <p class="text-5xl text-center" style="color:#0061a9;">{{ $total_invited }}</p>
+                </div>
+            
+                <div class="bg-white rounded-lg shadow-md p-4 w-1/6">
+                    <h2 class="text-lg font-semibold text-center">Asistieron</h2>
+                    <p class="text-5xl text-center" style="color:#009975;">{{ $total_asist }}</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-4 w-1/6">
+                    <h2 class="text-lg font-semibold text-center">No Asistieron</h2>
+                    <p class="text-5xl text-center" style="color:#cd3349;">{{ $total_no_asist }}</p>
+                </div>
+            
+                <div class="bg-white rounded-lg shadow-md p-4 w-1/6">
+                    <h2 class="text-lg font-semibold text-center">No invitados</h2>
+                    <p class="text-5xl text-center" style="color:#eab756;">{{ $total_no_invited }}</p>
+                </div>
+            </div>
 
-        {{-- <div class="pagination-container text-right mt-10">
-            {{ $logs->links() }}
-        </div> --}}
+        @livewire('tabladinamica', ['id' => $event->id])
+
     </div>
 
     <div class="mt-40"></div>
