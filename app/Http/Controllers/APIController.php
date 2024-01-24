@@ -27,12 +27,19 @@ class APIController extends Controller
             $event_invited = EventInvited::where('event_id', $event_id)->get()->last();
             $decoded_users = json_decode($event_invited->users, true);
     
-            //1 ok , 0 no invitado, 2 dovle invitado
+            //1 ok , 0 no invitado, 2 ok doble invitado, 3 no invitado doble asistencia
             $check_medical_log = EventLog::where('event_id', $event_id)->where('user_id', $find_medical->user->id)->get();
-            if(count($check_medical_log) ==1 ){
+            if(count($check_medical_log) >=1 ){
                 DB::table('event_logs')->where('user_id', $find_medical->user->id)->update([
                     'status' => 2,
                 ]);
+
+                $create_event_log = new EventLog();
+                $create_event_log->event_id = $event_id;
+                $create_event_log->user_id = $find_medical->user->id;
+                $create_event_log->status = in_array($find_medical->user->id, $decoded_users)? 2: 3;
+                $create_event_log->save();
+                
             }else{
                 if(count($check_medical_log) ==0 ){
                     $create_event_log = new EventLog();
