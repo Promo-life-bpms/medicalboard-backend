@@ -21,5 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::post('/checkin', [APIController::class, 'checkin'])->name('api.checkin');
+Route::post('/ios/checkin', [APIController::class, 'iosCheckin'])->name('api.iosCheckin');
+
 Route::get('/month-events', [APIController::class, 'monthEvents'])->name('api.monthEvents');
 
