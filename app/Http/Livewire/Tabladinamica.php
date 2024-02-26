@@ -28,32 +28,24 @@ class Tabladinamica extends Component
     public function mount($id)
     {
         $this->event = Event::findOrFail($id);
+        $this->loadData();
     }
 
     public function loadData()
     {
         $this->user = auth()->user();
-        $this->usuarios = User::all();
 
-        $existingUserIds = $this->event->invited->users;
-        $existingUserIdsArray = json_decode($existingUserIds, true);
+        $existingUserIdsArray = json_decode($this->event->invited->users, true);
 
-        $names = [];
-        foreach ($existingUserIdsArray as $userId) {
-            $user = $this->usuarios->where('id', $userId)->first();
-            if ($user) {
-                $names[] = $user->name . ' ' . $user->lastname;
-            }
-        }
+        $this->usuarios = User::whereIn('id', $existingUserIdsArray)->get();
 
-        $this->nombres = $names;
-
-        $this->usuariosFiltrados = $this->usuarios->reject(function ($usuario) use ($existingUserIdsArray) {
-            return in_array($usuario->id, $existingUserIdsArray);
+        $names = $this->usuarios->map(function ($user) {
+            return $user->name . ' ' . $user->lastname;
         });
 
-        // Apartir de aquí convertir a livewire
-        $users_invited = User::whereIn('id', $existingUserIdsArray)->get();
+        $this->nombres = $names->toArray();
+
+        $this->usuariosFiltrados = User::whereNotIn('id', $existingUserIdsArray)->get();
 
         $user_checkin = EventLog::where('event_id', $this->event->id)
             ->whereIn('status', [1, 2])
@@ -68,14 +60,12 @@ class Tabladinamica extends Component
 
         $this->totalInvited = count($existingUserIdsArray);
         $this->totalAsist = count($user_checkin) + count($users_no_invited);
-        $this->totalNoAsist = count($users_invited) - count($user_checkin);
+        $this->totalNoAsist = $this->usuarios->count() - count($user_checkin);
         $this->totalNoInvited = count($users_no_invited);
-        // Termina aquí
     }
 
     public function render()
     {
-        $this->loadData();
         $logs = $this->event->logs()->paginate(10);
         return view('livewire.tabladinamica', compact("logs"));
     }
