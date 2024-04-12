@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EventInvited;
+use App\Models\Medical;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
@@ -76,5 +79,39 @@ class AdminController extends Controller
 
         return redirect()->route('admin.index')
         ->with('delete', 'Usuario eliminado satisfactoriamente');
+    }
+
+    public function importUsers(Request $request) {
+
+    
+        $data = Excel::toArray(null, $request->file('file'));
+
+        // Obtener los datos de la columna A a partir de la fila 4 hacia abajo
+        $columnAData = collect($data[0])->splice(5)->pluck(0);
+
+        $eventInvited = EventInvited::where('event_id', $request->event_id)->get()->first();
+
+        // Convertir la cadena de usuarios en un array
+        $existingUsers = json_decode($eventInvited->users);
+
+        // Obtener los datos de la columna A a partir de la fila 4 hacia abajo
+        $columnAData = collect($data[0])->splice(5)->pluck(0);
+
+        // Iterar sobre los datos obtenidos
+        foreach ($columnAData as $data) {
+            // Buscar si el usuario existe en el array de usuarios
+            if (!in_array($data, $existingUsers)) {
+                // Si no existe, agregarlo al array
+                $existingUsers[] = $data;
+            }
+        }
+
+        // Actualizar el campo users en el modelo EventInvited
+        $eventInvited->users = json_encode($existingUsers);
+        $eventInvited->save();
+
+
+
+        return redirect()->back()->with('success', 'Archivo Excel importado correctamente.');
     }
 }
