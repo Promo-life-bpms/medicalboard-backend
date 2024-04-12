@@ -56,7 +56,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/stadistics', [EventController::class, 'stadistics'])->name('admin.event.stadistics');
 
-    
+    Route::post('/import/users', [AdminController::class, 'importUsers'])->name('import.users');
 });
 
 require __DIR__.'/auth.php';
